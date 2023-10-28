@@ -1,0 +1,51 @@
+@options
+@packages
+-classpath
+'C:/Users/FPT-ACER/.m2/repository/jakarta/platform/jakarta.jakartaee-api/8.0.0/jakarta.jakartaee-api-8.0.0.jar'
+-encoding
+'UTF-8'
+-protected
+-source
+'1.8'
+-sourcepath
+'D:/gitspace/Auction-Project/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2023. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'D:/gitspace/Auction-Project/target/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'Auction-Project-1.0-SNAPSHOT 1.0-SNAPSHOT API'
+-linkoffline
+'https://docs.oracle.com/javase/8/docs/api' 'D:/gitspace/Auction-Project/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'Auction-Project-1.0-SNAPSHOT 1.0-SNAPSHOT API'
+com.mycompany.auction.project
+com.mycompany.auction.project.resources
+C:\Users\FPT-ACER\.m2\repository\jakarta\platform\jakarta.jakartaee-api\8.0.0\jakarta.jakartaee-api-8.0.0.jar = 1695796440768
+D:\gitspace\Auction-Project\src\main\java = 1696690389924
+D:\gitspace\Auction-Project\target\apidocs\allclasses-index.html = 1698487203615
+D:\gitspace\Auction-Project\target\apidocs\allpackages-index.html = 1698487203621
+D:\gitspace\Auction-Project\target\apidocs\copy.svg = 1698487203666
+D:\gitspace\Auction-Project\target\apidocs\element-list = 1698487203498
+D:\gitspace\Auction-Project\target\apidocs\help-doc.html = 1698487203660
+D:\gitspace\Auction-Project\target\apidocs\index-all.html = 1698487203636
+D:\gitspace\Auction-Project\target\apidocs\index.html = 1698487203601
+D:\gitspace\Auction-Project\target\apidocs\member-search-index.js = 1698487203625
+D:\gitspace\Auction-Project\target\apidocs\module-search-index.js = 1698487203622
+D:\gitspace\Auction-Project\target\apidocs\overview-summary.html = 1698487203645
+D:\gitspace\Auction-Project\target\apidocs\overview-tree.html = 1698487203591
+D:\gitspace\Auction-Project\target\apidocs\package-search-index.js = 1698487203623
+D:\gitspace\Auction-Project\target\apidocs\script.js = 1698487203665
+D:\gitspace\Auction-Project\target\apidocs\search-page.js = 1698487203671
+D:\gitspace\Auction-Project\target\apidocs\search.html = 1698487203639
+D:\gitspace\Auction-Project\target\apidocs\search.js = 1698487203669
+D:\gitspace\Auction-Project\target\apidocs\stylesheet.css = 1698487203663
+D:\gitspace\Auction-Project\target\apidocs\tag-search-index.js = 1698487203626
+D:\gitspace\Auction-Project\target\apidocs\type-search-index.js = 1698487203624
