@@ -1,1 +1,0 @@
-memberSearchIndex = [{"p":"com.mycompany.auction.project.resources","c":"JakartaEE8Resource","l":"JakartaEE8Resource()","u":"%3Cinit%3E()"},{"p":"com.mycompany.auction.project","c":"JakartaRestConfiguration","l":"JakartaRestConfiguration()","u":"%3Cinit%3E()"},{"p":"com.mycompany.auction.project.resources","c":"JakartaEE8Resource","l":"ping()"}];updateSearchResults();
