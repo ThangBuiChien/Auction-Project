@@ -1,17 +1,19 @@
 
 package auction.business;
-    import java.text.NumberFormat;
-    import java.io.Serializable;
-    import javax.persistence.Entity;
-    import javax.persistence.GeneratedValue;
-    import javax.persistence.GenerationType;
-    import javax.persistence.Id;
 
+import java.text.NumberFormat;
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Notification implements Serializable{
     
-    @Entity
+    
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private string message;
+    private String message;
    
     @ManyToMany(fetch=FetchType.EAGER)
     private Buyer buyer;
@@ -24,11 +26,11 @@ public class Notification implements Serializable{
     public void setBuyer(Buyer buyer) {
         this.buyer = buyer;
     }
-     public string getmessage() {
+     public String getmessage() {
         return message;
     }
 
-    public void setmessage(string message) {
+    public void setmessage(String message) {
         this.message = message;
     }
     

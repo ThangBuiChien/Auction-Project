@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 
 
 @Entity
-public class Product  implements Serializable {
+public class Product implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,8 +31,9 @@ public class Product  implements Serializable {
     @ManyToOne(fetch=FetchType.EAGER)
     private Seller seller;
     
-    @OnetoMany(fetch=EAGER, cascade=CascadeType.PERSIST)  
+    @OneToMany(fetch=EAGER, cascade=CascadeType.PERSIST)  
     private List<Buyer> follower;
+    
     
     public Product() {}
     

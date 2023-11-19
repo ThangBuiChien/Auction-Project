@@ -6,10 +6,10 @@ package auction.business;
     import javax.persistence.GeneratedValue;
     import javax.persistence.GenerationType;
 
-
+@Entity
 public class Receipt implements Serializable{
     
-    @Entity
+    
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Date purchaseDate;
    
