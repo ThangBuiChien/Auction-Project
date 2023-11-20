@@ -25,6 +25,7 @@ public class Bid implements Serializable {
     @ManyToOne
     private Buyer buyer;
     
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long invoiceNumber;
