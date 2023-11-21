@@ -45,24 +45,47 @@ public class UsersServlet extends HttpServlet {
             if (BuyerDB.emailExists(newEmail)) {
                 message = "This email address already exists.<br>" +
                           "Please enter another email address.";
+                url = "/simpleRegister.jsp";
+
             }
             else {
                 message = "Create new account succesfully, please login in";
                 BuyerDB.insert(buyer);
+                url = "/simpleLogin.jsp";
             }
             
-            BuyerDB.insert(buyer);
             
             //Announce succesfull and send to login.jsp
             request.setAttribute("message", message);
             
-            url = "/simpleRegister.jsp";
+        }
+        else if (action.equals("login")){
+            String currentEmail = request.getParameter("email");
+            String currentPassword = request.getParameter("password");
+            
+            String message="";
+            if(BuyerDB.checkPassword(currentEmail, currentPassword)){
+                
+                //Load to main page
+                message = "Login successfully";
+                url = "/simpleLogin.jsp";
+
+
+            }
+            else {
+                message = "Wrong account or password, please try again";
+                url = "/simpleLogin.jsp";
+            }
+            
+            request.setAttribute("message", message);
+            
+        }
 
             
             
             
 
-        }       
+              
 
         
         

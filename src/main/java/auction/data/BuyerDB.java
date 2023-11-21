@@ -32,6 +32,23 @@ public class BuyerDB {
         }
     }
     
+    public static void update(Buyer buyer) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        trans.begin();       
+        try {
+            em.merge(buyer);
+            trans.commit();
+        } catch (Exception e) {
+            System.out.println(e);
+            trans.rollback();
+        } finally {
+            em.close();
+        }
+    }
+    
+    
+    //Two function for check existed email
     public static Buyer selectUser(String email) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         String qString = "SELECT u FROM Buyer u " +
@@ -52,4 +69,20 @@ public class BuyerDB {
         Buyer u = selectUser(email);   
         return u != null;
     }
+    
+    //Check acount and password
+    
+    public static boolean checkPassword(String email, String password) {
+        Buyer u = selectUser(email);   
+        
+        if(u!=null ){
+            if (u.getPassword().equals(password)) {
+                return true;
+            }
+    }
+        return false;
+    }
+    
+    
+    
 }
