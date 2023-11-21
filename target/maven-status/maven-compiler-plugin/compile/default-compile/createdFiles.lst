@@ -1,5 +1,6 @@
 auction\controllers\UsersServlet.class
 auction\business\Notification.class
+auction\business\Seller_.class
 auction\business\Notification_.class
 auction\business\Buyer.class
 auction\business\Cart_.class

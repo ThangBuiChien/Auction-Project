@@ -41,10 +41,19 @@ public class UsersServlet extends HttpServlet {
             buyer.setPassword(newPassword);
             
             //save to database
+            String message;
+            if (BuyerDB.emailExists(newEmail)) {
+                message = "This email address already exists.<br>" +
+                          "Please enter another email address.";
+            }
+            else {
+                message = "Create new account succesfully, please login in";
+                BuyerDB.insert(buyer);
+            }
+            
             BuyerDB.insert(buyer);
             
             //Announce succesfull and send to login.jsp
-            String message = "Create new account succesfully, please login in";
             request.setAttribute("message", message);
             
             url = "/simpleRegister.jsp";

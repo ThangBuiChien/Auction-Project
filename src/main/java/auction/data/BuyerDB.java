@@ -31,4 +31,25 @@ public class BuyerDB {
             em.close();
         }
     }
+    
+    public static Buyer selectUser(String email) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        String qString = "SELECT u FROM Buyer u " +
+                "WHERE u.email = :email";
+        TypedQuery<Buyer> q = em.createQuery(qString, Buyer.class);
+        q.setParameter("email", email);
+        try {
+            Buyer user = q.getSingleResult();
+            return user;
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+
+    public static boolean emailExists(String email) {
+        Buyer u = selectUser(email);   
+        return u != null;
+    }
 }

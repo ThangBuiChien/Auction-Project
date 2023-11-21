@@ -1,7 +1,6 @@
 /target/
 !.mvn/wrapper/maven-wrapper.jar
-#
-persistence.xml
+
 ### STS ###
 .apt_generated
 .classpath
