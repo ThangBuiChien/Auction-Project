@@ -66,10 +66,24 @@ public class UsersServlet extends HttpServlet {
             String message="";
             if(BuyerDB.checkPassword(currentEmail, currentPassword)){
                 
-                //Load to main page
-                message = "Login successfully";
-                url = "/simpleLogin.jsp";
 
+                
+                
+                Buyer currentBuyer = BuyerDB.selectUser(currentEmail);
+                
+                //store current login succesfully to use 
+                session.setAttribute("buyer", currentBuyer);
+                
+                //Load to main page 
+                if("activate".equals(currentBuyer.getAccountStatus())){
+                    message = "Login successfully";
+                    url = "/simpleLogin.jsp";
+                }
+                else{
+                    url = "/simpleAddInfoBuyer.jsp";
+                }
+                
+                
 
             }
             else {
@@ -80,6 +94,47 @@ public class UsersServlet extends HttpServlet {
             request.setAttribute("message", message);
             
         }
+        
+        else if (action.equals("createNewAccount")){
+            url = "/simpleRegister.jsp";
+        }
+        
+        else if (action.equals("addInformation")){
+            //Get imformation
+            String firstName = request.getParameter("firstName");
+            String lastName = request.getParameter("lastName");
+            String address = request.getParameter("address");
+            String debitCardInfo = request.getParameter("debitCardInfo");
+            
+            //get the current buyer
+            Buyer currentBuyer = (Buyer) session.getAttribute("buyer");
+            
+            //Add new value
+            currentBuyer.setFirstName(firstName);
+            currentBuyer.setLastName(lastName);
+            currentBuyer.setAddress(address);
+            currentBuyer.setDebitCardInfo(debitCardInfo);
+            currentBuyer.setAccountStatus("activate");
+            
+            //Store to DB
+            BuyerDB.update(currentBuyer);
+            
+            //
+            String message = "Update succesfully!";
+            request.setAttribute("message", message);
+            
+            url = "/simpleLogin.jsp";
+        
+        }
+            
+                    
+            
+            
+            
+            
+                    
+        
+
 
             
             

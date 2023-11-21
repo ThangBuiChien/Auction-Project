@@ -25,7 +25,13 @@
                value=${user.Password}><br>
                
         <label>&nbsp;</label>
-        <input type="submit" value="Join Now" class="margin_left">
+        <input type="submit" value="Login" class="margin_left">
+    </form>
+               
+    <form action="userLogin" method="post">
+        <input type="hidden" name="action" value="createNewAccount">        
+        
+        <input type="submit" value="Create new account" class="margin_left">
     </form>
         
      
