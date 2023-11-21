@@ -1,2 +1,3 @@
-com\mycompany\auction\project\JakartaRestConfiguration.class
+Receipt.class
 com\mycompany\auction\project\resources\JakartaEE8Resource.class
+com\mycompany\auction\project\JakartaRestConfiguration.class
