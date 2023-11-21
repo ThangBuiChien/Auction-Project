@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -21,7 +22,10 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Cart implements Serializable {
     
-    @ManyToOne(fetch=EAGER, cascade=CascadeType.PERSIST)  
+//    @ManyToOne(fetch=EAGER, cascade=CascadeType.PERSIST)  
+//    private List<Product> listcart;
+    
+    @OneToMany(fetch=EAGER, cascade=CascadeType.PERSIST)  
     private List<Product> listcart;
     
     

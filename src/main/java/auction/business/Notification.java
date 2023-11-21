@@ -11,12 +11,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Notification implements Serializable{
 
-    @ManyToMany(fetch=EAGER, cascade=CascadeType.PERSIST)  
-    private List<Seller> listseller;
+    //@ManyToOne(fetch=EAGER, cascade=CascadeType.PERSIST)  
+    //private List<Seller> listseller;
+    
+    @ManyToOne
+    private Seller listseller;
+
+
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idNoti;
@@ -29,11 +36,19 @@ public class Notification implements Serializable{
     public void setIdNoti(Long idNoti) {
         this.idNoti = idNoti;
     }
-    public void setListseller(List<Seller> listseller) {
+//    public void setListseller(List<Seller> listseller) {
+//        this.listseller = listseller;
+//    }
+//
+//    public List<Seller> getListseller() {
+//        return listseller;
+//    }
+    
+     public void setListseller(Seller listseller) {
         this.listseller = listseller;
     }
 
-    public List<Seller> getListseller() {
+    public Seller getListseller() {
         return listseller;
     }
       public String getMessage() {
