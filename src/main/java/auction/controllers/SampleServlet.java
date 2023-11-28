@@ -1,0 +1,77 @@
+package auction.controllers;
+
+import java.io.*;
+import java.util.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+import javax.servlet.annotation.WebServlet;
+import auction.data.BuyerDB;
+import auction.business.Buyer;
+ 
+@WebServlet("/sampleServlet")
+public class SampleServlet extends HttpServlet {
+
+    @Override
+    protected void doPost(HttpServletRequest request,
+            HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        HttpSession session = request.getSession();
+
+        String url = "/index.jsp";
+        
+        // get current action
+        String action = request.getParameter("action");
+        if (action == null) {
+            action = "register";  // default action
+        }
+        
+        
+        
+        if (action.equals("register")) { 
+            
+            //Get imformation
+            String newEmail = request.getParameter("email");
+            String newPassword = request.getParameter("password");
+            
+            //Create new buyer with information
+            Buyer buyer = new Buyer();
+            buyer.setEmail(newEmail);
+            buyer.setPassword(newPassword);
+            
+            //save to database
+            String message;
+            if (BuyerDB.emailExists(newEmail)) {
+                message = "This email address already exists.<br>" +
+                          "Please enter another email address.";
+                url = "/simpleRegister.jsp";
+
+            }
+            else {
+                message = "Create new account succesfully, please login in";
+                BuyerDB.insert(buyer);
+                url = "/simpleLogin.jsp";
+            }
+            
+            
+            //Announce succesfull and send to login.jsp
+            request.setAttribute("message", message);
+            
+        }
+        
+            
+        
+        
+        getServletContext()
+                .getRequestDispatcher(url)
+                .forward(request, response);
+    }    
+    
+    @Override
+    protected void doGet(HttpServletRequest request,
+            HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
+    }    
+}
