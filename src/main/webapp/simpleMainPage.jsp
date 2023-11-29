@@ -33,7 +33,7 @@
     
         <a href="./simpleAddProduct.jsp" class="margin_left">Seller</a> <br>
     
-        <a href="./simpleNotification.jsp" class="margin_left">Notification</a>
+        <a href="./userLogin?action=loadNofi" class="margin_left">Notification</a>
     
     </body>
 </html>

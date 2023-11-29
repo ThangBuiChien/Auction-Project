@@ -42,8 +42,8 @@ public class NotiDB {
             
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         
-        String qString = "SELECT u from Notification u " +
-            "WHERE u.user = :currentUser";
+        String qString = "SELECT u from Notification u "
+            + "WHERE u.user = :currentUser";
         
         System.out.println("this is the query " + qString);
         System.out.println("is user send; userID =  " + currentUser);
@@ -51,6 +51,32 @@ public class NotiDB {
         TypedQuery<Notification> q = em.createQuery(qString, Notification.class);
         
         q.setParameter("currentUser", currentUser);
+
+
+        List<Notification> notifications;
+        try {
+            notifications = q.getResultList();
+            if (notifications == null || notifications.isEmpty())
+                notifications = null;
+        } finally {
+            em.close();
+        }
+        return notifications;
+    }
+    
+    public static List<Notification> selectNotification() {
+        
+
+            
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        
+        String qString = "SELECT u from Notification u ";
+           // + "WHERE u.user = :currentUser";
+        
+       
+        
+        TypedQuery<Notification> q = em.createQuery(qString, Notification.class);
+        
 
 
         List<Notification> notifications;
