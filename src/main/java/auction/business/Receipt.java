@@ -1,3 +1,4 @@
+package auction.business;
 
 import auction.business.Buyer;
 import auction.business.Product;

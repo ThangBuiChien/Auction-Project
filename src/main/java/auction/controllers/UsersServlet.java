@@ -77,7 +77,9 @@ public class UsersServlet extends HttpServlet {
                 //Load to main page 
                 if("activate".equals(currentBuyer.getAccountStatus())){
                     message = "Login successfully";
-                    url = "/simpleLogin.jsp";
+                    session.setAttribute("user", currentBuyer);
+                    url = "/simpleProduct.jsp";
+                    
                 }
                 else{
                     url = "/simpleAddInfoBuyer.jsp";

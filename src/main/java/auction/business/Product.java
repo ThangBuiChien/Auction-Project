@@ -28,11 +28,19 @@ public class Product implements Serializable {
     private int currentPrice;
     private int buyNowPrice;
     
+    
+//    @ManyToOne(fetch=FetchType.EAGER)
+//    private Seller seller;
+    
     @ManyToOne(fetch=FetchType.EAGER)
-    private Seller seller;
+    private Buyer seller;
     
     @OneToMany(fetch=EAGER, cascade=CascadeType.PERSIST)  
     private List<Buyer> follower;
+    
+    //store the current winner
+    @ManyToOne(fetch=FetchType.EAGER)
+    private Buyer winner;
     
     
     public Product() {}
@@ -93,19 +101,36 @@ public class Product implements Serializable {
     public void setBuyNowPrice(int buyNowPrice) {
         this.buyNowPrice= buyNowPrice;
     }  
-    public void setSeller(Seller s) {
-        seller = s;
+//    public void setSeller(Seller s) {
+//        seller = s;
+//    }
+//
+//    public Seller getSeller() {
+//        return seller;
+//    }
+    
+    public void setSeller(Buyer s) {
+        this.seller = s;
     }
 
-    public Seller getSeller() {
+    public Buyer getSeller() {
         return seller;
     }
+    
     public void setFollower(List<Buyer> follower) {
         this.follower = follower;
     }
 
     public List<Buyer> getFollower() {
         return follower;
+    }
+    
+    public void setWinner(Buyer winner) {
+        this.winner = winner;
+    }
+
+    public Buyer getWinner() {
+        return winner;
     }
 
 }
