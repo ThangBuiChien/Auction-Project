@@ -41,7 +41,9 @@ public class Buyer implements Serializable {
         
     }
     
-    
+    //getId hay getBuyerID deu duoc
+    // tuy nhiên nếu dùng getID thì ở lớp dưới DB thì phải dùng đúng tên, ở jsp thì phải dùng tên là ID
+    //VD: "SELECT * ... WHERE buyerID = " còn jsp thì ${buyer.getID()}; còn đây là ghi sai: ${buyer.getBuyerID}
     public Long getId() {
         return buyerID;
     }
