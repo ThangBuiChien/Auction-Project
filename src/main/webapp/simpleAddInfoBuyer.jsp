@@ -24,13 +24,13 @@
         <label class="pad_top">First Name:</label>
         <input required type="text" name="firstName" 
                value=${user.firstName}><br>
-        label class="pad_top">Last Name:</label>
+        <label class="pad_top">Last Name:</label>
         <input required type="text" name="lastName" 
                value=${user.lastName}><br>
-        label class="pad_top">Address:</label>
+        <label class="pad_top">Address:</label>
         <input required type="text" name="addreses" 
                value=${user.addreses}><br>
-        label class="pad_top">Debit card info:</label>
+        <label class="pad_top">Debit card info:</label>
         <input required type="text" name="debitCardInfo" 
                value=${user.debitCardInfo}><br>
         
