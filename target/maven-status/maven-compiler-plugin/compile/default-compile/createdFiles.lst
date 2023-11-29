@@ -1,6 +1,5 @@
 auction\business\Notification.class
 auction\business\Buyer.class
-Receipt_.class
 auction\business\User1.class
 auction\business\Product.class
 auction\business\User1_.class
@@ -10,7 +9,6 @@ auction\controllers\UsersServlet.class
 auction\business\Seller_.class
 auction\business\Notification_.class
 auction\business\Cart_.class
-Receipt.class
 auction\business\Product_.class
 com\mycompany\auction\project\resources\JakartaEE8Resource.class
 auction\data\DBUtil.class
