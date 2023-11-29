@@ -7,8 +7,12 @@ import javax.servlet.http.*;
 
 import javax.servlet.annotation.WebServlet;
 import auction.data.ProductDB;
+import auction.data.NotiDB;
+
 import auction.business.Product;
 import auction.business.Buyer;
+import auction.business.Notification;
+
 
 @WebServlet("/productServlet")
 public class ProductServlet extends HttpServlet {
@@ -99,6 +103,24 @@ public class ProductServlet extends HttpServlet {
             System.out.println("This is id: " + strId);
             
             if(newBidPrice > currentProduct.getCurrentPrice() ){
+                //Get notifaction to last owner
+                Buyer lastWinner = currentProduct.getWinner();
+                java.util.Date date = new java.util.Date();    
+                String nofiMessage = "At " + date.toString() + " The bid price of "
+                        + currentProduct.getProductName() +  " has changed";
+                
+                //Create new notification
+                Notification newNofi = new Notification();
+                newNofi.setUser(lastWinner);
+                newNofi.setMessage(nofiMessage);
+                
+                NotiDB.insert(newNofi);
+                
+                
+                
+                
+                
+                //Set new price and new current winner
                 currentProduct.setCurrentPrice(newBidPrice);
                 currentProduct.setWinner(currentBuyer);
                 message = "Update bid price succesful";

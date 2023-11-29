@@ -8,6 +8,8 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 import auction.data.BuyerDB;
 import auction.business.Buyer;
+import auction.business.Notification;
+import auction.data.NotiDB;
  
 @WebServlet("/userLogin")
 public class UsersServlet extends HttpServlet {
@@ -78,7 +80,8 @@ public class UsersServlet extends HttpServlet {
                 if("activate".equals(currentBuyer.getAccountStatus())){
                     message = "Login successfully";
                     session.setAttribute("user", currentBuyer);
-                    url = "/simpleProduct.jsp";
+                    url = "/simpleMainPage.jsp";
+                    
                     
                 }
                 else{
@@ -128,6 +131,40 @@ public class UsersServlet extends HttpServlet {
             url = "/simpleLogin.jsp";
         
         }
+        
+        else if (action.equals("loadNofi")){
+            Buyer currentUser = (Buyer)session.getAttribute("user");
+            String email = currentUser.getEmail();
+            System.out.println("This is email from load Nofi" + email);
+            List<Notification> tempNofi = NotiDB.selectNotifications(currentUser);
+            
+            request.setAttribute("nofi", tempNofi);
+            
+            url = "/simpleNotification.jsp";
+            
+        }
+        
+//        else if (action.equals("loadNofi")){
+////            Buyer currentUser = (Buyer)session.getAttribute("user");
+////            String email = currentUser.getEmail();
+////            System.out.println("This is email from load Nofi" + email);
+//            
+//            List<Notification> tempNofi = NotiDB.selectNotification();
+//            
+//            request.setAttribute("nofi", tempNofi);
+//
+//            
+//            
+//            
+//            
+//            url = "/simpleNotification.jsp";
+//            
+//        }
+
+        
+        
+
+        
             
                     
             

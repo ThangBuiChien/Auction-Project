@@ -28,7 +28,7 @@
                value=${user.lastName}><br>
         <label class="pad_top">starting Bid Price</label>
         <input required type="text" name="startingBidPrice" 
-               value=${user.addreses}><br>
+               value=${user.lastName}><br>
         <label class="pad_top">buy Now Price:</label>
         <input required type="text" name="buyNowPrice" 
                value=${user.debitCardInfo}><br>
