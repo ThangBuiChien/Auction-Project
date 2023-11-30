@@ -38,10 +38,10 @@ public class Product implements Serializable {
     @OneToMany(fetch=EAGER, cascade=CascadeType.PERSIST)  
     private List<Buyer> follower;
     
-    //store the current winner
+
     @ManyToOne(fetch=FetchType.EAGER)
     private Buyer winner;
-    
+
     
     public Product() {}
     
@@ -124,9 +124,11 @@ public class Product implements Serializable {
     public List<Buyer> getFollower() {
         return follower;
     }
+
     
     public void setWinner(Buyer winner) {
         this.winner = winner;
+
     }
 
     public Buyer getWinner() {

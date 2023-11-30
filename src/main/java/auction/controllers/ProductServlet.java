@@ -39,7 +39,7 @@ public class ProductServlet extends HttpServlet {
 
             //url = "/simpleProduct.jsp";
             
-            url = "/simpleProduct.jsp";
+            url = "/product.jsp";
             
             
             
@@ -75,7 +75,7 @@ public class ProductServlet extends HttpServlet {
 
             //url = "/simpleProduct.jsp";
             
-            url = "/simpleProduct.jsp";
+            url = "/product.jsp";
             
             
             
@@ -157,6 +157,7 @@ public class ProductServlet extends HttpServlet {
 
             
         }
+       
 
         
         

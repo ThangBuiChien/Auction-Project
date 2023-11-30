@@ -5,6 +5,7 @@ auction\business\Product.class
 auction\business\User1_.class
 com\mycompany\auction\project\JakartaRestConfiguration.class
 auction\business\Seller.class
+auction\business\Receipt_.class
 auction\controllers\UsersServlet.class
 auction\business\Seller_.class
 auction\business\Notification_.class
@@ -15,5 +16,6 @@ auction\data\DBUtil.class
 auction\business\Buyer_.class
 auction\data\BuyerDB.class
 auction\business\Bid.class
+auction\business\Receipt.class
 auction\business\Bid_.class
 auction\business\Cart.class

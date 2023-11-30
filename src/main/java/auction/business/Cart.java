@@ -25,15 +25,16 @@ public class Cart implements Serializable {
 //    @ManyToOne(fetch=EAGER, cascade=CascadeType.PERSIST)  
 //    private List<Product> listcart;
     
-    @OneToMany(fetch=EAGER, cascade=CascadeType.PERSIST)  
-    private List<Product> listcart;
+   
     
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 
     private Long id;
-    
+     
+    @OneToMany(fetch=EAGER, cascade=CascadeType.PERSIST)  
+    private List<Product> listcart;
 
     public Long getId() {
         return id;
