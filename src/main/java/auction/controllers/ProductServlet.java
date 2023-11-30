@@ -7,8 +7,15 @@ import javax.servlet.http.*;
 
 import javax.servlet.annotation.WebServlet;
 import auction.data.ProductDB;
+import auction.data.NotiDB;
+
 import auction.business.Product;
 import auction.business.Buyer;
+import auction.business.Notification;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 
 @WebServlet("/productServlet")
 public class ProductServlet extends HttpServlet {
@@ -31,7 +38,7 @@ public class ProductServlet extends HttpServlet {
         
         
         if (action.equals("loadProduct")) { 
-            List<Product> loadProduct = ProductDB.selectProducts();
+            List<Product> loadProduct = ProductDB.selectBiddingProducts();
             
             request.setAttribute("product", loadProduct);
             
@@ -39,13 +46,27 @@ public class ProductServlet extends HttpServlet {
 
             //url = "/simpleProduct.jsp";
             
-            url = "/product.jsp";
+            url = "/simpleProduct.jsp";
             
             
             
             //Announce succesfull and send to login.jsp
             
         }
+        
+        else if (action.equals("loadProductByUser")){
+            Buyer currentUser = (Buyer)session.getAttribute("user");
+            
+            List<Product> loadProduct = ProductDB.selectWinningProductsByUser(currentUser);
+            
+            request.setAttribute("products", loadProduct);
+            
+            
+            url = "/simpleWinningProduct.jsp";
+
+            
+        }
+
         else if (action.equals("addProduct")){
             Product newProduct = new Product();
             
@@ -67,15 +88,71 @@ public class ProductServlet extends HttpServlet {
             
             //Load again the product
             
-            List<Product> loadProduct = ProductDB.selectProducts();
+            List<Product> loadProduct = ProductDB.selectBiddingProducts();
             
             request.setAttribute("product", loadProduct);
             
             session.setAttribute("products", loadProduct);
 
             //url = "/simpleProduct.jsp";
+            System.out.println("Call FROM outside schedules, add product succesful!!!!!!!!");
+
+            url = "/simpleProduct.jsp";
             
-            url = "/product.jsp";
+            
+            ////////////Automatically call the GetFinalWinner
+            Long productID = newProduct.getID();
+            
+            ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+            
+             scheduler.schedule(() -> {
+                 
+             try{
+                 
+             System.out.println("Scheduled task executed at: " + System.currentTimeMillis());
+
+                // This block of code will be executed one hour later
+                // You can put your "setFinalWinner" logic here
+
+                // Assuming product ID is available in newProduct
+                //long productId = newProduct.getId(); // adjust this based on your actual implementation
+
+                // Call the "setFinalWinner" logic here
+                // Example:
+                // setFinalWinnerLogic(productId);
+                
+           // long id = Long.parseLong(productID);
+            
+            //Product currentProduct = ProductDB.selectProduct(productID);
+            Product currentProduct = newProduct;
+            currentProduct.setProductStatus(1);
+            
+            ProductDB.update(currentProduct);
+            
+            String message ="";
+            
+            message = "The winner is" + currentProduct.getWinner().getFirstName();
+            
+            List<Product> loadProduct1 = ProductDB.selectBiddingProducts();
+            
+            request.setAttribute("product", loadProduct1);           
+            session.setAttribute("products", loadProduct1);          
+            request.setAttribute("message", message);
+            
+            //check if it run or not
+            System.out.println("Call FROM inside schedules!!!!!!!!" + message);
+             }
+            catch (Exception e) {
+                // Catch any exceptions and print the stack trace
+                e.printStackTrace();
+            }
+
+            }, 20, TimeUnit.SECONDS);
+            
+            
+
+            
+            
             
             
             
@@ -98,20 +175,48 @@ public class ProductServlet extends HttpServlet {
             
             System.out.println("This is id: " + strId);
             
-            if(newBidPrice > currentProduct.getCurrentPrice() ){
+            if(currentProduct.getProductStatus() == 0){
+                if(newBidPrice > currentProduct.getCurrentPrice()  ){
+                
+                //Get notifaction to last owner
+                Buyer lastWinner = currentProduct.getWinner();
+                java.util.Date date = new java.util.Date();    
+                String nofiMessage = "At " + date.toString() + " The bid price of "
+                        + currentProduct.getProductName() +  " has changed";
+                
+                //Create new notification
+                Notification newNofi = new Notification();
+                newNofi.setUser(lastWinner);
+                newNofi.setMessage(nofiMessage);
+                
+                NotiDB.insert(newNofi);
+                
+                
+                
+                
+                
+                //Set new price and new current winner
                 currentProduct.setCurrentPrice(newBidPrice);
                 currentProduct.setWinner(currentBuyer);
                 message = "Update bid price succesful";
                 ProductDB.update(currentProduct);
                 
+                
+                
             }
-            
-            else{
+                else{
                 message = "Now bid price is not higer than current bid price, please choose a new bid price";
 
             }
+            }
+            else{
+                message = "Bidding time is over!";
+
+            }
             
-            List<Product> loadProduct = ProductDB.selectProducts();
+            
+            
+            List<Product> loadProduct = ProductDB.selectBiddingProducts();
             
             request.setAttribute("product", loadProduct);           
             session.setAttribute("products", loadProduct);          
@@ -135,14 +240,14 @@ public class ProductServlet extends HttpServlet {
             
             Product currentProduct = ProductDB.selectProduct(id);
             
-            currentProduct.setProductStatus(0);
+            currentProduct.setProductStatus(1);
             
             ProductDB.update(currentProduct);
             
             String message ="";
             message = "The winner is" + currentProduct.getWinner().getFirstName();
             
-            List<Product> loadProduct = ProductDB.selectProducts();
+            List<Product> loadProduct = ProductDB.selectBiddingProducts();
             
             request.setAttribute("product", loadProduct);           
             session.setAttribute("products", loadProduct);          
@@ -157,12 +262,7 @@ public class ProductServlet extends HttpServlet {
 
             
         }
-       
-
-        
-        
-            
-        
+      
         
         getServletContext()
                 .getRequestDispatcher(url)

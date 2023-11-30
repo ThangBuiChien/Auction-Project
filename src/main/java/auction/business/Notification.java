@@ -20,7 +20,7 @@ public class Notification implements Serializable{
     //private List<Seller> listseller;
     
     @ManyToOne
-    private Seller listseller;
+    private Buyer user;
 
 
     
@@ -44,12 +44,12 @@ public class Notification implements Serializable{
 //        return listseller;
 //    }
     
-     public void setListseller(Seller listseller) {
-        this.listseller = listseller;
+     public void setUser(Buyer user) {
+        this.user = user;
     }
 
-    public Seller getListseller() {
-        return listseller;
+    public Buyer getUser() {
+        return user;
     }
       public String getMessage() {
         return message;
