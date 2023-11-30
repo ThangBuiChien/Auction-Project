@@ -191,10 +191,7 @@ public class ProductServlet extends HttpServlet {
                 
                 NotiDB.insert(newNofi);
                 
-                
-                
-                
-                
+ 
                 //Set new price and new current winner
                 currentProduct.setCurrentPrice(newBidPrice);
                 currentProduct.setWinner(currentBuyer);
