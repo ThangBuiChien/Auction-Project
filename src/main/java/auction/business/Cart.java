@@ -12,7 +12,6 @@ import static javax.persistence.FetchType.EAGER;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
@@ -31,16 +30,16 @@ public class Cart implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 
-    private Long id;
+    private int id;
      
     @OneToMany(fetch=EAGER, cascade=CascadeType.PERSIST)  
     private List<Product> listcart;
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
     public void setListcart(List<Product> listcart) {
@@ -50,6 +49,5 @@ public class Cart implements Serializable {
     public List<Product> getListcart() {
         return listcart;
     }
-    
-    
+
 }

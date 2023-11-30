@@ -1,69 +1,72 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
     package auction.controllers;
 
-    import java.io.*;
-    import java.util.*;
-    import javax.servlet.*;
-    import javax.servlet.http.*;
+    import java.io.IOException;
+    import javax.servlet.ServletException;
+    import javax.servlet.annotation.WebServlet;
+    import javax.servlet.http.HttpServletRequest;
+    import javax.servlet.http.HttpServletResponse;
 
     import javax.servlet.annotation.WebServlet;
-    import auction.data.CartDB;
-    import auction.data.ProductDB;
-    import auction.business.Product;
-    import auction.business.Bid;
-    import auction.business.Cart;
+  
+    import auction.data.*;
 
-    
-/**
- *
- * @author memo
- */
-@WebServlet(name = "CartServlet", urlPatterns = {"/CartServlet"})
-public class CartServlet extends HttpServlet {
-    @Override
-   protected void doPost(HttpServletRequest request,
+    import auction.business.*;
+
+    import java.util.List;
+    import javax.servlet.http.HttpServlet;
+    import javax.servlet.http.HttpSession;
+
+    @WebServlet("/cartServlet")
+    public class CartServlet extends HttpServlet {
+       @Override
+    protected void doPost(HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
         
-        ServletContext sc = getServletContext();
+        HttpSession session = request.getSession();
+
+        String url = "/index.jsp";
         
         // get current action
         String action = request.getParameter("action");
-        if (action == null) {
-            action = "cart";  // default action
-        }
-
-        // perform action and set URL to appropriate page
-        String url = "/product.jsp";
-        if (action.equals("cart")) {
-            String productID = request.getParameter("productID");
-           
-            HttpSession session = request.getSession();
-            Cart cart = (Cart) session.getAttribute("cart");
-            if (cart == null) {
-                cart = new Cart();
+            if (action == null) {
+                action = "cart";  // default action
             }
-            List<Cart> listCart = CartDB.Insert;
-           
-            
-            session.setAttribute("cart", cart);
-            url = "/cart.jsp";
-        }
-        
-        List<Product> listCart = ProductDB.selectProducts();
-
-        request.setAttribute("products", listCart);    
-        session.setAttribute("products", listCart);
+            if (action.equals("cart"))
+            { 
+                Buyer buyer = new Buyer();
+                buyer.setEmail("user.email");
+                //int buyerid = session.getAttribute()
+                int productID = Integer.parseInt("productID");
+                Cart cart = (Cart) session.getAttribute("cart");
+                if (cart == null) 
+                {
+                    cart = new Cart();
+                    
+                }
                 
-        sc.getRequestDispatcher(url)
+                Product product = new Product();
+                product.setID(productID);
+                //cart.setListcart(listcart);
+                
+                
+            }
+
+            getServletContext()
+                .getRequestDispatcher(url)
                 .forward(request, response);
-    }
-    
-    
-   @Override
+    }   
+
+    @Override
     protected void doGet(HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
         doPost(request, response);
-    }   
+    }
 
+   
 }

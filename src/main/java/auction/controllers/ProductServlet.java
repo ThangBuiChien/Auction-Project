@@ -101,7 +101,7 @@ public class ProductServlet extends HttpServlet {
             
             
             ////////////Automatically call the GetFinalWinner
-            Long productID = newProduct.getID();
+            int productID = newProduct.getID();
             
             ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
             
@@ -147,7 +147,7 @@ public class ProductServlet extends HttpServlet {
                 e.printStackTrace();
             }
 
-            }, 20, TimeUnit.SECONDS);
+            }, 100, TimeUnit.SECONDS);
             
             
 
