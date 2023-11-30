@@ -22,20 +22,24 @@
                value=${product.productName} ><br>
         <label class="pad_top">Tag:</label>
         <input required type="text" name="tag" 
-               value=${user.firstName}><br>
+               value=${product.tag}><br>
         <label class="pad_top">description:</label>
         <input required type="text" name="description" 
-               value=${user.lastName}><br>
-        <label class="pad_top">starting Bid Price</label>
-        <input required type="text" name="startingBidPrice" 
-               value=${user.lastName}><br>
+               value=${product.description}><br>
         <label class="pad_top">buy Now Price:</label>
         <input required type="text" name="buyNowPrice" 
-               value=${user.debitCardInfo}><br>
-        
-               
+               value=${product.buyNowPrice}><br>
+        <label class="pad_top">Start Bid:</label>
+        <input required type="text" name="startingBidPrice" 
+               value=${product.startingBidPrice}><br>
+        <label class="pad_top">CurrentPrice:</label>
+        <input required type="text" name="currentPrice" 
+               value=${product.currentPrice}><br>
+        <label class="pad_top">buy Now Price:</label>
+        <input required type="text" name="buyNowPrice" 
+               value=${product.buyNowPrice}><br>
         <label>&nbsp;</label>
-        <input type="submit" value="Add product!" class="margin_left">
+        <input type="submit" value="Add !" class="margin_left">
     </form>
                
 </html>

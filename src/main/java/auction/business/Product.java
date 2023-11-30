@@ -27,6 +27,7 @@ public class Product implements Serializable {
     private int startingBidPrice;
     private int currentPrice;
     private int buyNowPrice;
+
     
     
 //    @ManyToOne(fetch=FetchType.EAGER)
