@@ -29,7 +29,8 @@
             <input type="Notification" value="Buyer" class=>
         </form>-->
                
-        <a href="./simpleProduct.jsp" class="margin_left">Buyer</a> <br>
+        
+         <a href="./simpleMainBuyerPage.jsp" class="margin_left">Buyer Main Page</a> <br>
     
         <a href="./simpleAddProduct.jsp" class="margin_left">Seller</a> <br>
     
