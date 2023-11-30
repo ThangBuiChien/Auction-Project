@@ -262,11 +262,7 @@ public class ProductServlet extends HttpServlet {
 
             
         }
-
-        
-        
-            
-        
+      
         
         getServletContext()
                 .getRequestDispatcher(url)
