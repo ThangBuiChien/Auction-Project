@@ -100,6 +100,11 @@ public class UsersServlet extends HttpServlet {
             
         }
         
+        else if (action.equals("logOut")){
+            session.removeAttribute("user");
+            url = "/simpleLogin.jsp";
+        }
+        
         else if (action.equals("createNewAccount")){
             url = "/simpleRegister.jsp";
         }

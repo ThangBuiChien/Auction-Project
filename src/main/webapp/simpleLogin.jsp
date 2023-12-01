@@ -19,10 +19,10 @@
         <input type="hidden" name="action" value="login">        
         <label class="pad_top">Email:</label>
         <input type="email" name="email" 
-               value=${user.email}><br>
+               ><br>
         <label class="pad_top">Password:</label>
         <input required type="text" name="password" 
-               value=${user.Password}><br>
+               ><br>
                
         <label>&nbsp;</label>
         <input type="submit" value="Login" class="margin_left">
