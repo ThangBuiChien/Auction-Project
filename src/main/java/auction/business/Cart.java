@@ -56,5 +56,9 @@ public class Cart implements Serializable {
         }
         listcart.add(product);
     }
-
+    public void removeItem(Product product) {
+        if (listcart != null) {
+        listcart.remove(product);
+        }
+    }
 }

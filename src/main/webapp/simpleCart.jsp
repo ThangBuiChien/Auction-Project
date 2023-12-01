@@ -41,17 +41,17 @@
     
     <p>${message}</p>
     
-    <c:forEach var="item" items="${cart.listcart}">
+    <c:forEach var="prouct" items="${cart.listcart}">
     <tr>
-        <td><c:out value='${product.productID}'/></td>
-        <td><c:out value='${product.productName}'/></td>
-        <td><c:out value='${product.tag}'/></td>
-        <td><c:out value='${product.description}'/></td>
-        <td><c:out value='${product.productStatus}'/></td>
+        <td><c:out value='${item.ID}'/></td>
+        <td><c:out value='${item.productName}'/></td>
+        <td><c:out value='${item.tag}'/></td>
+        <td><c:out value='${item.description}'/></td>
+        <td><c:out value='${item.productStatus}'/></td>
     
-        <td class="right"><c:out value='${product.startingBidPrice}'/></td>
-        <td class="right"><c:out value='${product.currentPrice}'/></td>
-        <td class="right"><c:out value='${product.buyNowPrice}'/></td>
+        <td class="right"><c:out value='${item.startingBidPrice}'/></td>
+        <td class="right"><c:out value='${item.currentPrice}'/></td>
+        <td class="right"><c:out value='${item.buyNowPrice}'/></td>
         
      
             
@@ -60,14 +60,18 @@
               <input type="hidden" name="action" value="setBidPrice">   
               
               <input type="hidden" name="productID" 
-                     value="<c:out value='${product.productID}'/>">              
+                     value="<c:out value='${item.ID}'/>">              
               <input type=text name="newBidPrice"  placeholder="Enter your bid here"
-                     value="<c:out value='${product.currentPrice}'/>" id="newBidPrice" >
+                     value="<c:out value='${item.currentPrice}'/>" id="newBidPrice" >
               <input type="submit" value="Enter new bid Price">
             </form>
         </td>
-        
-        
+        <td>
+            <form action="cart" method="post">
+                <input type="hidden" name="action" value="deletecart">
+                <input type="hidden" name="productCode" value="<c:out value='${item.ID}'/>">
+                <input type="submit" value="delete">
+                </td>
         
     </tr>
     </c:forEach>

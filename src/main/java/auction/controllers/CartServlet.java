@@ -50,12 +50,30 @@ public class CartServlet extends HttpServlet {
                         }
 
                         cart.addItem(currentProduct);
-                        
+                        System.out.println("Cart items: " + cart.getListcart());
                         session.setAttribute("cart", cart);
                         url = "/simpleCart.jsp";
                     }
                 
             } 
+        }else if(action.equals("deletecart")){
+                Cart cart = (Cart) session.getAttribute("cart");
+           if (cart != null) {
+               // Retrieve product code from the request parameters
+               String productCode = request.getParameter("productCode");
+
+               if (productCode != null && !productCode.isEmpty()) {
+                   // Convert product code to int
+                   int currentProductID = Integer.parseInt(productCode);
+                   Product currentProduct = ProductDB.selectProduct(currentProductID);
+
+                   // Remove the item from the cart
+                   cart.removeItem(currentProduct);
+
+                   session.setAttribute("cart", cart);
+                   url = "/simpleCart.jsp";
+               }
+           }
         }
 
         getServletContext().getRequestDispatcher(url).forward(request, response);
