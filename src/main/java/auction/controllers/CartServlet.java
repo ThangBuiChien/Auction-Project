@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
     package auction.controllers;
 
     import java.io.IOException;
@@ -11,7 +8,7 @@
     import javax.servlet.http.HttpServletResponse;
 
     import javax.servlet.annotation.WebServlet;
-  
+
     import auction.data.*;
 
     import auction.business.*;
@@ -20,9 +17,9 @@
     import javax.servlet.http.HttpServlet;
     import javax.servlet.http.HttpSession;
 
-    @WebServlet("/cartServlet")
+    @WebServlet("/cart")
     public class CartServlet extends HttpServlet {
-       @Override
+    @Override
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
@@ -38,20 +35,22 @@
             }
             if (action.equals("cart"))
             { 
-                Buyer buyer = new Buyer();
-                buyer.setEmail("user.email");
-                //int buyerid = session.getAttribute()
-                int productID = Integer.parseInt("productID");
-                Cart cart = (Cart) session.getAttribute("cart");
-                if (cart == null) 
-                {
-                    cart = new Cart();
+                Buyer currentBuyer = (Buyer) session.getAttribute("buyer");
+                Long currrentBuyerID = currentBuyer .getId();
+                String productIDString = request.getParameter("productID");
+                //Cart cart = (Cart) session.getAttribute("cart");
+                if (productIDString != null && !productIDString.isEmpty()) {
+                    int productID = Integer.parseInt(productIDString);
+                    Cart cart = (Cart) session.getAttribute("cart");
+                    if (cart == null) {
+                        cart = new Cart();
+                    }
                     
+                    Product product = new Product();
+                    product.setID(productID);
+                    
+                    url = "/simpleCart.jsp";
                 }
-                
-                Product product = new Product();
-                product.setID(productID);
-                //cart.setListcart(listcart);
                 
                 
             }

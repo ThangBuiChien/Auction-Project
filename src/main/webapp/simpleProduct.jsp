@@ -52,7 +52,7 @@
         <td class="right"><c:out value='${item.buyNowPrice}'/></td>
 
         <td><form action="cart" method="post">
-                <input type="hidden" name="productCode" value="<c:out value='${item.productID}'/>">
+                <input type="hidden" name="productCode" value="<c:out value='${item.ID}'/>">
                 <input type="submit" value="Add To Cart">
             </form></td>
             
