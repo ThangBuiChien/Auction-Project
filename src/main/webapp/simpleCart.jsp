@@ -29,7 +29,7 @@
         <th class="right">starting Bid Price</th>
         <th class="right">current Price</th>
         <th class="right">buy Now Price</th>
-        <th class="right">End time</th>
+        
 
         
         <th>&nbsp;</th>
@@ -41,18 +41,18 @@
     
     <p>${message}</p>
     
-    <c:forEach var="item" items="${cart.item}">
+    <c:forEach var="item" items="${cart.listcart}">
     <tr>
-        <td><c:out value='${item.productID}'/></td>
-        <td><c:out value='${item.productName}'/></td>
-        <td><c:out value='${item.tag}'/></td>
-        <td><c:out value='${item.description}'/></td>
-        <td><c:out value='${item.productStatus}'/></td>
+        <td><c:out value='${product.productID}'/></td>
+        <td><c:out value='${product.productName}'/></td>
+        <td><c:out value='${product.tag}'/></td>
+        <td><c:out value='${product.description}'/></td>
+        <td><c:out value='${product.productStatus}'/></td>
     
-        <td class="right"><c:out value='${item.startingBidPrice}'/></td>
-        <td class="right"><c:out value='${item.currentPrice}'/></td>
-        <td class="right"><c:out value='${item.buyNowPrice}'/></td>
-
+        <td class="right"><c:out value='${product.startingBidPrice}'/></td>
+        <td class="right"><c:out value='${product.currentPrice}'/></td>
+        <td class="right"><c:out value='${product.buyNowPrice}'/></td>
+        
      
             
         <td>
@@ -60,9 +60,9 @@
               <input type="hidden" name="action" value="setBidPrice">   
               
               <input type="hidden" name="productID" 
-                     value="<c:out value='${item.ID}'/>">              
-              <input type=text name="newBidPrice"  placeholder="Enter your discount here"
-                     value="<c:out value='${item.currentPrice}'/>" id="newBidPrice" >
+                     value="<c:out value='${product.productID}'/>">              
+              <input type=text name="newBidPrice"  placeholder="Enter your bid here"
+                     value="<c:out value='${product.currentPrice}'/>" id="newBidPrice" >
               <input type="submit" value="Enter new bid Price">
             </form>
         </td>

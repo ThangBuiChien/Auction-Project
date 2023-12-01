@@ -171,7 +171,7 @@ public class ProductServlet extends HttpServlet {
             int newBidPrice = Integer.parseInt(strNewBidPrice);
             
             String message = "";
-            Product currentProduct = ProductDB.selectProduct(id);
+            Product currentProduct = ProductDB.selectProduct((int) id);
             
             System.out.println("This is id: " + strId);
             

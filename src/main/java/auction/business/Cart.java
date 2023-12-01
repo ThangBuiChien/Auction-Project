@@ -5,6 +5,7 @@
 package auction.business;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -48,6 +49,12 @@ public class Cart implements Serializable {
 
     public List<Product> getListcart() {
         return listcart;
+    }
+    public void addItem(Product product) {
+        if (listcart == null) {
+            listcart = new ArrayList<>();
+        }
+        listcart.add(product);
     }
 
 }
