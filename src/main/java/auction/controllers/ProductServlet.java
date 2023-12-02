@@ -1,4 +1,4 @@
-package auction.controllers;
+    package auction.controllers;
 
 import java.io.*;
 import java.util.*;
@@ -12,9 +12,14 @@ import auction.data.NotiDB;
 import auction.business.Product;
 import auction.business.Buyer;
 import auction.business.Notification;
+import java.text.ParseException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 @WebServlet("/productServlet")
@@ -69,7 +74,6 @@ public class ProductServlet extends HttpServlet {
 
         else if (action.equals("addProduct")){
             Product newProduct = new Product();
-            
             String productName = request.getParameter("productName");
             String tag = request.getParameter("tag");
             String description = request.getParameter("description");
@@ -77,18 +81,29 @@ public class ProductServlet extends HttpServlet {
             int intStartingBidPrice = Integer.parseInt(startingBidPrice);
             String buyNowPrice = request.getParameter("buyNowPrice");
             int intBuyNowPrice = Integer.parseInt(buyNowPrice);
-            
+            String endDateTime = request.getParameter("endDatetime");
+            Date endTime = null;
+            try {
+                
+                //endTime = new SimpleDateFormat("yyyy/MM/dd HH:mm").parse(endDateTime);
+                SimpleDateFormat inFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+                endTime = inFormat.parse(endDateTime);
+            } catch (ParseException ex) {
+                Logger.getLogger(ProductServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            System.out.println("This is endTime from HTML Origin: " + endDateTime);
+            System.out.println("This is endTime from HTML convert: " + endTime);
+
             newProduct.setProductName(productName);
             newProduct.setTag(tag);
             newProduct.setDescription(description);
             newProduct.setStartingBidPrice(intStartingBidPrice);
             newProduct.setCurrentPrice(intStartingBidPrice);
             newProduct.setBuyNowPrice(intBuyNowPrice);
+            newProduct.setEndDatetime(endTime);
             
             ProductDB.insert(newProduct);
-            
-            
-            
+             
             //Load again the product
             
             List<Product> loadProduct = ProductDB.selectBiddingProducts();
@@ -98,8 +113,8 @@ public class ProductServlet extends HttpServlet {
             session.setAttribute("products", loadProduct);
 
             //url = "/simpleProduct.jsp";
-            System.out.println("Call FROM outside schedules, add product succesful!!!!!!!!; the Current price of prduct is"
-                    );
+            System.out.println("Call FROM outside schedules, add product succesful!!!!!!!!");
+            System.out.println("This is endDateTime from Product " + newProduct.getEndDatetime() );
 
             url = "/simpleProduct.jsp";
             
@@ -209,10 +224,7 @@ public class ProductServlet extends HttpServlet {
                 
                 NotiDB.insert(newNofi);
                 
-                
-                
-                
-                
+ 
                 //Set new price and new current winner
                 currentProduct.setCurrentPrice(newBidPrice);
                 currentProduct.setWinner(currentBuyer);
@@ -280,7 +292,10 @@ public class ProductServlet extends HttpServlet {
 
             
         }
-      
+        else if(action.equals("Addproduct"))
+        {
+            url ="/simpleAddProduct.jsp";
+        }
         
         getServletContext()
                 .getRequestDispatcher(url)

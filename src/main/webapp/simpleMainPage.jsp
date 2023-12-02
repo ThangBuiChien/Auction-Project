@@ -32,7 +32,7 @@
         
          <a href="./simpleMainBuyerPage.jsp" class="margin_left">Buyer Main Page</a> <br>
     
-        <a href="./simpleAddProduct.jsp" class="margin_left">Seller</a> <br>
+        <a href="./simpleSellerInfo.jsp" class="margin_left">Seller</a> <br>
     
         <a href="./userLogin?action=loadNofi" class="margin_left">Notification</a>
     

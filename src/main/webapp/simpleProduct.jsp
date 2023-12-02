@@ -30,6 +30,7 @@
         <th class="right">starting Bid Price</th>
         <th class="right">current Price</th>
         <th class="right">buy Now Price</th>
+        <th>End time </th>
         <th>&nbsp;</th>
      </tr>
      
@@ -50,6 +51,8 @@
         <td class="right"><c:out value='${item.startingBidPrice}'/></td>
         <td class="right"><c:out value='${item.currentPrice}'/></td>
         <td class="right"><c:out value='${item.buyNowPrice}'/></td>
+        
+        <td><c:out value='${item.getEndDatetime()}'/></td>
 
         <td><form action="cart" method="post">
                 <input type="hidden" name="productCode" value="<c:out value='${item.buyNowPrice}'/>">

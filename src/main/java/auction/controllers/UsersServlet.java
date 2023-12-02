@@ -6,10 +6,8 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 import javax.servlet.annotation.WebServlet;
-import auction.data.BuyerDB;
-import auction.business.Buyer;
-import auction.business.Notification;
-import auction.data.NotiDB;
+import auction.data.*;
+import auction.business.*;
  
 @WebServlet("/userLogin")
 public class UsersServlet extends HttpServlet {
@@ -31,7 +29,7 @@ public class UsersServlet extends HttpServlet {
         
         
         
-        if (action.equals("register")) { 
+        else if (action.equals("register")) { 
             
             //Get imformation
             String newEmail = request.getParameter("email");
@@ -42,6 +40,9 @@ public class UsersServlet extends HttpServlet {
             buyer.setEmail(newEmail);
             buyer.setPassword(newPassword);
             
+            Seller seller = new Seller();
+            seller.setEmail(newEmail);
+            seller.setPassword(newPassword);
             //save to database
             String message;
             if (BuyerDB.emailExists(newEmail)) {
@@ -53,6 +54,7 @@ public class UsersServlet extends HttpServlet {
             else {
                 message = "Create new account succesfully, please login in";
                 BuyerDB.insert(buyer);
+                SellerDB.insert(seller);
                 url = "/simpleLogin.jsp";
             }
             
@@ -72,16 +74,17 @@ public class UsersServlet extends HttpServlet {
                 
                 
                 Buyer currentBuyer = BuyerDB.selectUser(currentEmail);
+                Seller currentSeller = SellerDB.selectUser(currentEmail);
                 
                 //store current login succesfully to use 
                 session.setAttribute("buyer", currentBuyer);
-                
+                session.setAttribute("seller", currentSeller);
                 //Load to main page 
                 if("activate".equals(currentBuyer.getAccountStatus())){
                     message = "Login successfully";
                     session.setAttribute("user", currentBuyer);
+                    session.setAttribute("user", currentSeller);
                     url = "/simpleMainPage.jsp";
-                    
                     
                 }
                 else{
@@ -94,7 +97,7 @@ public class UsersServlet extends HttpServlet {
             else {
                 message = "Wrong account or password, please try again";
                 url = "/simpleLogin.jsp";
-            }
+                }
             
             request.setAttribute("message", message);
             
@@ -118,7 +121,7 @@ public class UsersServlet extends HttpServlet {
             
             //get the current buyer
             Buyer currentBuyer = (Buyer) session.getAttribute("buyer");
-            
+            Seller currentSeller = (Seller) session.getAttribute("seller");
             //Add new value
             currentBuyer.setFirstName(firstName);
             currentBuyer.setLastName(lastName);
@@ -126,8 +129,14 @@ public class UsersServlet extends HttpServlet {
             currentBuyer.setDebitCardInfo(debitCardInfo);
             currentBuyer.setAccountStatus("activate");
             
+            currentSeller.setFirstName(firstName);
+            currentSeller.setLastName(lastName);
+            currentSeller.setCompanyName(address);
+            currentSeller.setPhoneNumber(debitCardInfo);
+            currentSeller.setAccountStatus("activate");
             //Store to DB
             BuyerDB.update(currentBuyer);
+            SellerDB.update(currentSeller);
             
             //
             String message = "Update succesfully!";
@@ -136,41 +145,29 @@ public class UsersServlet extends HttpServlet {
             url = "/simpleLogin.jsp";
         
         }
-        
-        else if (action.equals("loadNofi")){
-            Buyer currentUser = (Buyer)session.getAttribute("user");
-            String email = currentUser.getEmail();
-            System.out.println("This is email from load Nofi" + email);
-            List<Notification> tempNofi = NotiDB.selectNotifications(currentUser);
+        else if (action.equals("Change")){
+            url = "/simpleChangeInfo.jsp";
+        } 
+        else if (action.equals("ChangeInfo")){
             
-            request.setAttribute("nofi", tempNofi);
+            String firstName = request.getParameter("firstName");
+            String lastName = request.getParameter("lastName");
+            String companyName = request.getParameter("companyName");
+            String phoneNumber = request.getParameter("phoneNumber");
+            Seller currentSeller = (Seller) session.getAttribute("seller");
+            currentSeller.setFirstName(firstName);
+            currentSeller.setLastName(lastName);
+            currentSeller.setCompanyName(companyName);
+            currentSeller.setPhoneNumber(phoneNumber);
+            SellerDB.update(currentSeller);
             
-            url = "/simpleNotification.jsp";
+            //
+            String message = "Update succesfully!";
+            request.setAttribute("message", message);
             
-        }
-        
-//        else if (action.equals("loadNofi")){
-////            Buyer currentUser = (Buyer)session.getAttribute("user");
-////            String email = currentUser.getEmail();
-////            System.out.println("This is email from load Nofi" + email);
-//            
-//            List<Notification> tempNofi = NotiDB.selectNotification();
-//            
-//            request.setAttribute("nofi", tempNofi);
-//
-//            
-//            
-//            
-//            
-//            url = "/simpleNotification.jsp";
-//            
-//        }
+            url = "/simpleSellerInfo.jsp";
+        } 
 
-        
-        
-
-        
-            
                     
             
             
