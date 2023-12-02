@@ -38,7 +38,7 @@ public class Product implements Serializable {
 //    private Seller seller;
     
     @ManyToOne(fetch=FetchType.EAGER)
-    private Buyer seller;
+    private Seller seller;
     
     @OneToMany(fetch=EAGER, cascade=CascadeType.PERSIST)  
     private List<Buyer> follower;
@@ -114,11 +114,11 @@ public class Product implements Serializable {
 //        return seller;
 //    }
     
-    public void setSeller(Buyer s) {
+    public void setSeller(Seller s) {
         this.seller = s;
     }
 
-    public Buyer getSeller() {
+    public Seller getSeller() {
         return seller;
     }
     
