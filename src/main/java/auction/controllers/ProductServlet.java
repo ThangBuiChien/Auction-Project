@@ -1,4 +1,4 @@
-package auction.controllers;
+    package auction.controllers;
 
 import java.io.*;
 import java.util.*;
@@ -84,10 +84,16 @@ public class ProductServlet extends HttpServlet {
             String endDateTime = request.getParameter("endDatetime");
             Date endTime = null;
             try {
-                endTime = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(endDateTime);
+                
+                //endTime = new SimpleDateFormat("yyyy/MM/dd HH:mm").parse(endDateTime);
+                SimpleDateFormat inFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+                endTime = inFormat.parse(endDateTime);
             } catch (ParseException ex) {
                 Logger.getLogger(ProductServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
+            System.out.println("This is endTime from HTML Origin: " + endDateTime);
+            System.out.println("This is endTime from HTML convert: " + endTime);
+
             newProduct.setProductName(productName);
             newProduct.setTag(tag);
             newProduct.setDescription(description);
@@ -107,6 +113,7 @@ public class ProductServlet extends HttpServlet {
 
             //url = "/simpleProduct.jsp";
             System.out.println("Call FROM outside schedules, add product succesful!!!!!!!!");
+            System.out.println("This is endDateTime from Product " + newProduct.getEndDatetime() );
 
             url = "/simpleProduct.jsp";
             

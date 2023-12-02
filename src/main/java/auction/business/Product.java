@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
 
 
 @Entity
@@ -28,6 +29,7 @@ public class Product implements Serializable {
     private int startingBidPrice;
     private int currentPrice;
     private int buyNowPrice;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date endDateTime;
 
     
@@ -142,7 +144,7 @@ public class Product implements Serializable {
     }
     public Date getEndDatetime()
     {
-        return this.endDateTime;
+        return endDateTime;
     }
 
 }

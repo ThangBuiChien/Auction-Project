@@ -52,7 +52,7 @@
         <td class="right"><c:out value='${item.currentPrice}'/></td>
         <td class="right"><c:out value='${item.buyNowPrice}'/></td>
         
-        <td><c:out value='${item.endDateTime}'/></td>
+        <td><c:out value='${item.getEndDatetime()}'/></td>
 
         <td><form action="cart" method="post">
                 <input type="hidden" name="productCode" value="<c:out value='${item.buyNowPrice}'/>">
