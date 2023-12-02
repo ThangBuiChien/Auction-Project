@@ -125,6 +125,8 @@ public class ProductServlet extends HttpServlet {
             
             message = "The winner is" + currentProduct.getWinner().getFirstName();
             
+            
+            
             List<Product> loadProduct1 = ProductDB.selectBiddingProducts();
             
             request.setAttribute("product", loadProduct1);           
@@ -133,7 +135,23 @@ public class ProductServlet extends HttpServlet {
             
             //check if it run or not
             System.out.println("Call FROM inside schedules!!!!!!!!" + message);
+            
+            //Get notifaction to the winner
+                Buyer winner = currentProduct.getWinner();
+                java.util.Date date = new java.util.Date();    
+                String nofiMessage = "At " + date.toString() + " congratulation You are the winner of  "
+                        + currentProduct.getProductName() +  " !";
+                
+                //Create new notification
+                Notification newNofi = new Notification();
+                newNofi.setUser(winner);
+                newNofi.setMessage(nofiMessage);
+                
+                NotiDB.insert(newNofi);
              }
+             
+             
+              
             catch (Exception e) {
                 // Catch any exceptions and print the stack trace
                 e.printStackTrace();
