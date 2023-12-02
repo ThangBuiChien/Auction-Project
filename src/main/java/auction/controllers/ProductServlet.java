@@ -63,7 +63,7 @@ public class ProductServlet extends HttpServlet {
         }
         
         else if (action.equals("loadProductByUser")){
-            Buyer currentUser = (Buyer)session.getAttribute("user");
+            Buyer currentUser = (Buyer)session.getAttribute("buyer");
             
             List<Product> loadProduct = ProductDB.selectWinningProductsByUser(currentUser);
             
@@ -215,7 +215,7 @@ public class ProductServlet extends HttpServlet {
             long id = Long.parseLong(strId);
 
             
-            Buyer currentBuyer = (Buyer) session.getAttribute("user");
+            Buyer currentBuyer = (Buyer) session.getAttribute("buyer");
             String strNewBidPrice = request.getParameter("newBidPrice");
             
             int newBidPrice = Integer.parseInt(strNewBidPrice);
