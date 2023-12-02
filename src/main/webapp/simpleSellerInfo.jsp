@@ -16,13 +16,17 @@
     
 
     <form action="userLogin" method="post">
-        <input type="hidden" name="action" value="AddProduct">        
-        <input type="submit" value="Add Product" class="margin_left">
-     
         <input type="hidden" name="action" value="Change">        
         
         <input type="submit" value="Change Info" class="margin_left">
     </form>
+    
+    <form action="productServlet" method="post">
+        <input type="hidden" name="action" value="Addproduct">        
+        
+        <input type="submit" value="Add product" class="margin_left">
+    </form>
+    
     
     
 

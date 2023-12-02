@@ -162,9 +162,7 @@ public class UsersServlet extends HttpServlet {
             
             url = "/simpleSellerInfo.jsp";
         } 
-        else if (action.equals("AddProduct")){
-            url = "/simpleAddProduct.jsp";
-        }  
+
                     
             
             

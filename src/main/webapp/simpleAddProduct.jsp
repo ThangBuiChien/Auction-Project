@@ -32,14 +32,11 @@
         <label class="pad_top">Start Bid:</label>
         <input required type="text" name="startingBidPrice" 
                value=${product.startingBidPrice}><br>
-        <label class="pad_top">CurrentPrice:</label>
-        <input required type="text" name="currentPrice" 
-               value=${product.currentPrice}><br>
-        <label class="pad_top">buy Now Price:</label>
-        <input required type="text" name="buyNowPrice" 
-               value=${product.buyNowPrice}><br>
+        <label for="birthdaytime">End Time:</label>
+        <input type="datetime-local" name="endDatetime"
+               value=${product.endDateTime}><br>
         <label>&nbsp;</label>
-        <input type="submit" value="Add !" class="margin_left">
+        <input type="submit" value="Add!" class="margin_left">
     </form>
                
 </html>

@@ -12,9 +12,14 @@ import auction.data.NotiDB;
 import auction.business.Product;
 import auction.business.Buyer;
 import auction.business.Notification;
+import java.text.ParseException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 @WebServlet("/productServlet")
@@ -69,7 +74,6 @@ public class ProductServlet extends HttpServlet {
 
         else if (action.equals("addProduct")){
             Product newProduct = new Product();
-            
             String productName = request.getParameter("productName");
             String tag = request.getParameter("tag");
             String description = request.getParameter("description");
@@ -77,15 +81,22 @@ public class ProductServlet extends HttpServlet {
             int intStartingBidPrice = Integer.parseInt(startingBidPrice);
             String buyNowPrice = request.getParameter("buyNowPrice");
             int intBuyNowPrice = Integer.parseInt(buyNowPrice);
-            
+            String endDateTime = request.getParameter("endDatetime");
+            Date endTime = null;
+            try {
+                endTime = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(endDateTime);
+            } catch (ParseException ex) {
+                Logger.getLogger(ProductServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
             newProduct.setProductName(productName);
             newProduct.setTag(tag);
             newProduct.setDescription(description);
             newProduct.setStartingBidPrice(intStartingBidPrice);
             newProduct.setBuyNowPrice(intBuyNowPrice);
+            newProduct.setEndDatetime(endTime);
             
             ProductDB.insert(newProduct);
-            
+             
             //Load again the product
             
             List<Product> loadProduct = ProductDB.selectBiddingProducts();
@@ -259,7 +270,10 @@ public class ProductServlet extends HttpServlet {
 
             
         }
-      
+        else if(action.equals("Addproduct"))
+        {
+            url ="/simpleAddProduct.jsp";
+        }
         
         getServletContext()
                 .getRequestDispatcher(url)

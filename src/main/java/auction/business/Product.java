@@ -2,6 +2,7 @@ package auction.business;
 
 import java.text.NumberFormat;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -27,6 +28,7 @@ public class Product implements Serializable {
     private int startingBidPrice;
     private int currentPrice;
     private int buyNowPrice;
+    private Date endDateTime;
 
     
     
@@ -132,6 +134,15 @@ public class Product implements Serializable {
 
     public Buyer getWinner() {
         return winner;
+    }
+    
+    public void setEndDatetime(Date endDatetime)
+    {
+        this.endDateTime = endDatetime;
+    }
+    public Date getEndDatetime()
+    {
+        return this.endDateTime;
     }
 
 }
