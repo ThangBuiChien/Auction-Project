@@ -41,7 +41,7 @@
     
     <p>${message}</p>
     
-    <c:forEach var="prouct" items="${cart.listcart}">
+    <c:forEach var="item" items="${cart.listcart}">
     <tr>
         <td><c:out value='${item.ID}'/></td>
         <td><c:out value='${item.productName}'/></td>
@@ -69,10 +69,11 @@
         <td>
             <form action="cart" method="post">
                 <input type="hidden" name="action" value="deletecart">
-                <input type="hidden" name="productCode" value="<c:out value='${item.ID}'/>">
+                <input type="hidden" name="productID" value="<c:out value='${item.ID}'/>">
                 <input type="submit" value="delete">
-                </td>
-        
+               
+            </form>
+        </td>
     </tr>
     </c:forEach>
 

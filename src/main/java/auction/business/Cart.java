@@ -6,6 +6,7 @@ package auction.business;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -14,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -32,9 +34,12 @@ public class Cart implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
 
     private int id;
-     
+    @OneToOne
+    private Buyer currentbuyer; 
     @OneToMany(fetch=EAGER, cascade=CascadeType.PERSIST)  
     private List<Product> listcart;
+    
+
 
     public int getId() {
         return id;
@@ -42,6 +47,13 @@ public class Cart implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+    public Buyer getBuyer() {
+        return currentbuyer;
+    }
+
+    public void setBuyer(Buyer currentbuyer) {
+        this.currentbuyer = currentbuyer;
     }
     public void setListcart(List<Product> listcart) {
         this.listcart = listcart;
@@ -54,11 +66,31 @@ public class Cart implements Serializable {
         if (listcart == null) {
             listcart = new ArrayList<>();
         }
-        listcart.add(product);
+        boolean productAlreadyInCart = false;
+        for (Product cartProduct : listcart) {
+            if (cartProduct.getID() == product.getID()) {
+                // Product is already in the cart
+                // You can update quantity or take other action if needed
+                productAlreadyInCart = true;
+                break;
+            }
+        }
+
+        // If the product is not already in the cart, add it
+        if (!productAlreadyInCart) {
+            listcart.add(product);
+            setBuyer(currentbuyer);
+        }
     }
-    public void removeItem(Product product) {
-        if (listcart != null) {
-        listcart.remove(product);
+    public void removeItem(int productID) {
+        // Find the product in the cart based on the product ID
+        Iterator<Product> iterator = listcart.iterator();
+        while (iterator.hasNext()) {
+            Product item = iterator.next();
+            if (item.getID() == productID) {
+                iterator.remove();
+                break; // Assuming each product ID is unique, exit loop after removal
+            }
         }
     }
 }
