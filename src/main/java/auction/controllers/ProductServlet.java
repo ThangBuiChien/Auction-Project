@@ -125,24 +125,16 @@ public class ProductServlet extends HttpServlet {
             
              scheduler.schedule(() -> {
                  
+            Product currentProduct = ProductDB.selectProduct(productID);
+
+                 
              try{
                  
              System.out.println("Scheduled task executed at: " + System.currentTimeMillis());
 
-                // This block of code will be executed one hour later
-                // You can put your "setFinalWinner" logic here
-
-                // Assuming product ID is available in newProduct
-                //long productId = newProduct.getId(); // adjust this based on your actual implementation
-
-                // Call the "setFinalWinner" logic here
-                // Example:
-                // setFinalWinnerLogic(productId);
                 
-           // long id = Long.parseLong(productID);
             
-            //Product currentProduct = ProductDB.selectProduct(productID);
-            Product currentProduct = newProduct;
+            //Product currentProduct = newProduct;
             currentProduct.setProductStatus(1);
             
             ProductDB.update(currentProduct);
@@ -163,6 +155,10 @@ public class ProductServlet extends HttpServlet {
             catch (Exception e) {
                 // Catch any exceptions and print the stack trace
                 e.printStackTrace();
+                currentProduct.setProductStatus(2);
+                ProductDB.update(currentProduct);
+
+                
             }
 
             }, 20, TimeUnit.SECONDS);

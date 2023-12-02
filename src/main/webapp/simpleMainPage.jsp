@@ -36,5 +36,7 @@
     
         <a href="./userLogin?action=loadNofi" class="margin_left">Notification</a>
     
+        <a href="./userLogin?action=logOut" class="margin_left">Log out</a>
+
     </body>
 </html>
