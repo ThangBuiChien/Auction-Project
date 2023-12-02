@@ -1,4 +1,4 @@
-package auction.controllers;
+    package auction.controllers;
 
 import java.io.*;
 import java.util.*;
@@ -12,9 +12,17 @@ import auction.data.NotiDB;
 import auction.business.Product;
 import auction.business.Buyer;
 import auction.business.Notification;
+import java.text.ParseException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 @WebServlet("/productServlet")
@@ -55,7 +63,7 @@ public class ProductServlet extends HttpServlet {
         }
         
         else if (action.equals("loadProductByUser")){
-            Buyer currentUser = (Buyer)session.getAttribute("user");
+            Buyer currentUser = (Buyer)session.getAttribute("buyer");
             
             List<Product> loadProduct = ProductDB.selectWinningProductsByUser(currentUser);
             
@@ -69,7 +77,6 @@ public class ProductServlet extends HttpServlet {
 
         else if (action.equals("addProduct")){
             Product newProduct = new Product();
-            
             String productName = request.getParameter("productName");
             String tag = request.getParameter("tag");
             String description = request.getParameter("description");
@@ -77,15 +84,43 @@ public class ProductServlet extends HttpServlet {
             int intStartingBidPrice = Integer.parseInt(startingBidPrice);
             String buyNowPrice = request.getParameter("buyNowPrice");
             int intBuyNowPrice = Integer.parseInt(buyNowPrice);
+            String endDateTime = request.getParameter("endDatetime");
+            Date endTime = null;
+            LocalDateTime endTime1 = null;
+            try {
+                
+                //endTime = new SimpleDateFormat("yyyy/MM/dd HH:mm").parse(endDateTime);
+                SimpleDateFormat inFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+                endTime = inFormat.parse(endDateTime);
+                
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+                endTime1 = LocalDateTime.parse(endDateTime, formatter);
+            } catch (ParseException ex) {
+                Logger.getLogger(ProductServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            System.out.println("This is endTime from HTML Origin: " + endDateTime);
+            System.out.println("This is endTime from HTML convert: " + endTime);
             
+            LocalDateTime currentTime = LocalDateTime.now();
+            
+            Duration duration = Duration.between(currentTime, endTime1);
+            
+            long differenceInSeconds = duration.getSeconds();
+            
+            System.out.println("Difference in seconds: " + differenceInSeconds);
+
+
+
             newProduct.setProductName(productName);
             newProduct.setTag(tag);
             newProduct.setDescription(description);
             newProduct.setStartingBidPrice(intStartingBidPrice);
+            newProduct.setCurrentPrice(intStartingBidPrice);
             newProduct.setBuyNowPrice(intBuyNowPrice);
+            newProduct.setEndDatetime(endTime);
             
             ProductDB.insert(newProduct);
-            
+             
             //Load again the product
             
             List<Product> loadProduct = ProductDB.selectBiddingProducts();
@@ -96,6 +131,7 @@ public class ProductServlet extends HttpServlet {
 
             //url = "/simpleProduct.jsp";
             System.out.println("Call FROM outside schedules, add product succesful!!!!!!!!");
+            System.out.println("This is endDateTime from Product " + newProduct.getEndDatetime() );
 
             url = "/simpleProduct.jsp";
             
@@ -125,6 +161,8 @@ public class ProductServlet extends HttpServlet {
             
             message = "The winner is" + currentProduct.getWinner().getFirstName();
             
+            
+            
             List<Product> loadProduct1 = ProductDB.selectBiddingProducts();
             
             request.setAttribute("product", loadProduct1);           
@@ -133,7 +171,23 @@ public class ProductServlet extends HttpServlet {
             
             //check if it run or not
             System.out.println("Call FROM inside schedules!!!!!!!!" + message);
+            
+            //Get notifaction to the winner
+                Buyer winner = currentProduct.getWinner();
+                java.util.Date date = new java.util.Date();    
+                String nofiMessage = "At " + date.toString() + " congratulation You are the winner of  "
+                        + currentProduct.getProductName() +  " !";
+                
+                //Create new notification
+                Notification newNofi = new Notification();
+                newNofi.setUser(winner);
+                newNofi.setMessage(nofiMessage);
+                
+                NotiDB.insert(newNofi);
              }
+             
+             
+              
             catch (Exception e) {
                 // Catch any exceptions and print the stack trace
                 e.printStackTrace();
@@ -143,7 +197,7 @@ public class ProductServlet extends HttpServlet {
                 
             }
 
-            }, 20, TimeUnit.SECONDS);
+            }, differenceInSeconds, TimeUnit.SECONDS);
             
             
 
@@ -161,7 +215,7 @@ public class ProductServlet extends HttpServlet {
             long id = Long.parseLong(strId);
 
             
-            Buyer currentBuyer = (Buyer) session.getAttribute("user");
+            Buyer currentBuyer = (Buyer) session.getAttribute("buyer");
             String strNewBidPrice = request.getParameter("newBidPrice");
             
             int newBidPrice = Integer.parseInt(strNewBidPrice);
@@ -255,7 +309,10 @@ public class ProductServlet extends HttpServlet {
 
             
         }
-      
+        else if(action.equals("Addproduct"))
+        {
+            url ="/simpleAddProduct.jsp";
+        }
         
         getServletContext()
                 .getRequestDispatcher(url)

@@ -2,6 +2,7 @@ package auction.business;
 
 import java.text.NumberFormat;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -12,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
 
 
 @Entity
@@ -27,13 +29,16 @@ public class Product implements Serializable {
     private int startingBidPrice;
     private int currentPrice;
     private int buyNowPrice;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date endDateTime;
+
     
     
 //    @ManyToOne(fetch=FetchType.EAGER)
 //    private Seller seller;
     
     @ManyToOne(fetch=FetchType.EAGER)
-    private Buyer seller;
+    private Seller seller;
     
     @OneToMany(fetch=EAGER, cascade=CascadeType.PERSIST)  
     private List<Buyer> follower;
@@ -109,11 +114,11 @@ public class Product implements Serializable {
 //        return seller;
 //    }
     
-    public void setSeller(Buyer s) {
+    public void setSeller(Seller s) {
         this.seller = s;
     }
 
-    public Buyer getSeller() {
+    public Seller getSeller() {
         return seller;
     }
     
@@ -131,6 +136,15 @@ public class Product implements Serializable {
 
     public Buyer getWinner() {
         return winner;
+    }
+    
+    public void setEndDatetime(Date endDatetime)
+    {
+        this.endDateTime = endDatetime;
+    }
+    public Date getEndDatetime()
+    {
+        return endDateTime;
     }
 
 }

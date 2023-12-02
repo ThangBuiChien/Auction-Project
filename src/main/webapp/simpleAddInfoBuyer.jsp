@@ -16,10 +16,11 @@
     <p><i>${message}</i></p>
     
     <form action="userLogin" method="post">
-        <input type="hidden" name="action" value="addInformation">   
+        <input type="hidden" name="action" value="addInformation">
+
         
         <label class="pad_top">Email:</label>
-        <input type="email" name="email" 
+        <input> type="email" name="email" 
                value=${user.email} disabled><br>
         <label class="pad_top">First Name:</label>
         <input required type="text" name="firstName" 
@@ -28,8 +29,8 @@
         <input required type="text" name="lastName" 
                value=${user.lastName}><br>
         <label class="pad_top">Address:</label>
-        <input required type="text" name="addreses" 
-               value=${user.addreses}><br>
+        <input required type="text" name="address" 
+               value=${user.address}><br>
         <label class="pad_top">Debit card info:</label>
         <input required type="text" name="debitCardInfo" 
                value=${user.debitCardInfo}><br>
