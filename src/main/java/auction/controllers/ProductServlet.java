@@ -82,9 +82,12 @@ public class ProductServlet extends HttpServlet {
             newProduct.setTag(tag);
             newProduct.setDescription(description);
             newProduct.setStartingBidPrice(intStartingBidPrice);
+            newProduct.setCurrentPrice(intStartingBidPrice);
             newProduct.setBuyNowPrice(intBuyNowPrice);
             
             ProductDB.insert(newProduct);
+            
+            
             
             //Load again the product
             
@@ -95,7 +98,8 @@ public class ProductServlet extends HttpServlet {
             session.setAttribute("products", loadProduct);
 
             //url = "/simpleProduct.jsp";
-            System.out.println("Call FROM outside schedules, add product succesful!!!!!!!!");
+            System.out.println("Call FROM outside schedules, add product succesful!!!!!!!!; the Current price of prduct is"
+                    );
 
             url = "/simpleProduct.jsp";
             
