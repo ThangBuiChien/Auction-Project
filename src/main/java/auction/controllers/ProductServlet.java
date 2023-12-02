@@ -17,6 +17,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -83,16 +86,30 @@ public class ProductServlet extends HttpServlet {
             int intBuyNowPrice = Integer.parseInt(buyNowPrice);
             String endDateTime = request.getParameter("endDatetime");
             Date endTime = null;
+            LocalDateTime endTime1 = null;
             try {
                 
                 //endTime = new SimpleDateFormat("yyyy/MM/dd HH:mm").parse(endDateTime);
                 SimpleDateFormat inFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
                 endTime = inFormat.parse(endDateTime);
+                
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+                endTime1 = LocalDateTime.parse(endDateTime, formatter);
             } catch (ParseException ex) {
                 Logger.getLogger(ProductServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
             System.out.println("This is endTime from HTML Origin: " + endDateTime);
             System.out.println("This is endTime from HTML convert: " + endTime);
+            
+            LocalDateTime currentTime = LocalDateTime.now();
+            
+            Duration duration = Duration.between(currentTime, endTime1);
+            
+            long differenceInSeconds = duration.getSeconds();
+            
+            System.out.println("Difference in seconds: " + differenceInSeconds);
+
+
 
             newProduct.setProductName(productName);
             newProduct.setTag(tag);
@@ -180,7 +197,7 @@ public class ProductServlet extends HttpServlet {
                 
             }
 
-            }, 20, TimeUnit.SECONDS);
+            }, differenceInSeconds, TimeUnit.SECONDS);
             
             
 

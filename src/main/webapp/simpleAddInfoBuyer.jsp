@@ -20,7 +20,7 @@
 
         
         <label class="pad_top">Email:</label>
-        <input type="email" name="email" 
+        <input> type="email" name="email" 
                value=${user.email} disabled><br>
         <label class="pad_top">First Name:</label>
         <input required type="text" name="firstName" 
