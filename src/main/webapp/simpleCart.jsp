@@ -41,7 +41,7 @@
     
     <p>${message}</p>
     
-    <c:forEach var="prouct" items="${cart.listcart}">
+    <c:forEach var="item" items="${cart.listcart}">
     <tr>
         <td><c:out value='${item.ID}'/></td>
         <td><c:out value='${item.productName}'/></td>

@@ -48,34 +48,40 @@ public class CartServlet extends HttpServlet {
                         if (cart == null) {
                             cart = new Cart();
                         }
-
-                        cart.addItem(currentProduct);
-                        System.out.println("Cart items: " + cart.getListcart());
-                        session.setAttribute("cart", cart);
+                        boolean productAlreadyInCart = cart.containsItem(currentProduct);
+                         if (!productAlreadyInCart) {
+                            // Product not in cart, add it
+                            cart.addItem(currentProduct);
+                            
+                            session.setAttribute("cart", cart);
+                        } else {
+                           
+                        }
                         url = "/simpleCart.jsp";
                     }
                 
             } 
-        }else if(action.equals("deletecart")){
+        
+        
+        if (action.equals ("deletecart")) {
                 Cart cart = (Cart) session.getAttribute("cart");
-           if (cart != null) {
-               // Retrieve product code from the request parameters
-               String productCode = request.getParameter("productCode");
+                if (cart != null) {
+                    // Retrieve product ID from the request parameters
+                    String productIDParam = request.getParameter("productID");
 
-               if (productCode != null && !productCode.isEmpty()) {
-                   // Convert product code to int
-                   int currentProductID = Integer.parseInt(productCode);
-                   Product currentProduct = ProductDB.selectProduct(currentProductID);
+                    if (productIDParam != null && !productIDParam.isEmpty()) {
+                        // Convert product ID to int
+                        int currentProductID = Integer.parseInt(productIDParam);
 
-                   // Remove the item from the cart
-                   cart.removeItem(currentProduct);
+                        // Remove the item from the cart
+                        cart.removeItem(currentProductID);
 
-                   session.setAttribute("cart", cart);
-                   url = "/simpleCart.jsp";
-               }
-           }
+                        session.setAttribute("cart", cart);
+                        url = "/simpleCart.jsp";
+                    }
+                }
+            }
         }
-
         getServletContext().getRequestDispatcher(url).forward(request, response);
     }
 

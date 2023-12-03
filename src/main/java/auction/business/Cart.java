@@ -6,6 +6,7 @@ package auction.business;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -56,9 +57,29 @@ public class Cart implements Serializable {
         }
         listcart.add(product);
     }
-    public void removeItem(Product product) {
-        if (listcart != null) {
-        listcart.remove(product);
+    public void removeItem(int productID) {
+        // Find the product in the cart based on the product ID
+        Iterator<Product> iterator = listcart.iterator();
+        while (iterator.hasNext()) {
+            Product item = iterator.next();
+            if (item.getID() == productID) {
+                iterator.remove();
+                break; // Assuming each product ID is unique, exit loop after removal
+            }
         }
+   }
+    public boolean containsItem(Product product) {
+        if (listcart == null) {
+            return false;
+        }
+
+        for (Product item : listcart) {
+            // Assuming each product has a unique ID, you may need to adjust the condition
+            if (item.getID() == product.getID()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
