@@ -9,6 +9,8 @@ import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import auction.business.*;
+import static auction.business.Buyer_.buyerID;
+import java.util.List;
 
 public class CartDB {
     public static void insert(Cart cart) {
@@ -40,18 +42,39 @@ public class CartDB {
             em.close();
         }
     }
-//    public static Cart sellectProduct(int productID){
-//        String qString = "SELECT u FROM Cart u " +
-//                "WHERE u.id = :email";
-//        TypedQuery<Buyer> q = em.createQuery(qString, Buyer.class);
-//        q.setParameter("email", email);
-//        try {
-//            Buyer user = q.getSingleResult();
-//            return user;
-//        } catch (NoResultException e) {
-//            return null;
-//        } finally {
-//            em.close();
-//        }
-//    }
+    public static Cart sellectCart(Long buyerID) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+
+        String qString = "SELECT u FROM Cart u " +
+                "WHERE u.buyerid = :buyerID";
+        TypedQuery<Cart> q = em.createQuery(qString, Cart.class);
+        q.setParameter("buyerID", buyerID);
+
+        try {
+            Cart cart = q.getSingleResult();
+            return cart;
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+
+    public static Cart sellectCart() {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+
+        String qString = "SELECT u FROM Cart u";
+        TypedQuery<Cart> q = em.createQuery(qString, Cart.class);
+
+        try {
+            Cart cart = q.getSingleResult();
+            return cart;
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+
+   
 }
