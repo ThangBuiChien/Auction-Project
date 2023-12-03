@@ -168,7 +168,17 @@ public class UsersServlet extends HttpServlet {
             url = "/simpleSellerInfo.jsp";
         } 
 
-                    
+        else if (action.equals("loadNofi")){
+            Buyer currentUser = (Buyer)session.getAttribute("user");
+            String email = currentUser.getEmail();
+            System.out.println("This is email from load Nofi" + email);
+            List<Notification> tempNofi = NotiDB.selectNotifications(currentUser);
+            
+            request.setAttribute("nofi", tempNofi);
+            
+            url = "/simpleNotification.jsp";
+            
+        }
             
             
             
