@@ -83,7 +83,7 @@ public class UsersServlet extends HttpServlet {
                 if("activate".equals(currentBuyer.getAccountStatus())){
                     message = "Login successfully";
                     session.setAttribute("user", currentBuyer);
-                    session.setAttribute("user", currentSeller);
+                    //session.setAttribute("user", currentSeller);
                     url = "/simpleMainPage.jsp";
                     
                 }
@@ -169,14 +169,24 @@ public class UsersServlet extends HttpServlet {
         } 
 
         else if (action.equals("loadNofi")){
+            try{
             Buyer currentUser = (Buyer)session.getAttribute("user");
             String email = currentUser.getEmail();
             System.out.println("This is email from load Nofi" + email);
             List<Notification> tempNofi = NotiDB.selectNotifications(currentUser);
-            
+                
             request.setAttribute("nofi", tempNofi);
             
             url = "/simpleNotification.jsp";
+            }
+            catch (Exception e) {
+                // Catch any exceptions and print the stack trace
+                String mess = "You has been log out, plaese log in again!";
+                url = "/simpleLogin.jsp";
+                request.setAttribute("message", mess);
+
+                
+            }
             
         }
             
