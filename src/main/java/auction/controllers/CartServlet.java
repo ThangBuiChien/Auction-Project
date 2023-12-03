@@ -11,7 +11,9 @@ import javax.servlet.http.HttpSession;
 import auction.business.Buyer;
 import auction.business.Cart;
 import auction.business.Product;
+//import auction.data.CartDB;
 import auction.data.ProductDB;
+
 
 @WebServlet("/cart")
 public class CartServlet extends HttpServlet {
@@ -48,21 +50,18 @@ public class CartServlet extends HttpServlet {
                         if (cart == null) {
                             cart = new Cart();
                         }
-                        boolean productAlreadyInCart = cart.containsItem(currentProduct);
-                         if (!productAlreadyInCart) {
-                            // Product not in cart, add it
+                        
                             cart.addItem(currentProduct);
                             
                             session.setAttribute("cart", cart);
-                        } else {
-                           
-                        }
-                        url = "/simpleCart.jsp";
+                        
+                            url = "/simpleCart.jsp";
+                          
+                         
                     }
-                
             } 
         
-        
+        }
         if (action.equals ("deletecart")) {
                 Cart cart = (Cart) session.getAttribute("cart");
                 if (cart != null) {
@@ -81,7 +80,7 @@ public class CartServlet extends HttpServlet {
                     }
                 }
             }
-        }
+        
         getServletContext().getRequestDispatcher(url).forward(request, response);
     }
 

@@ -40,18 +40,39 @@ public class CartDB {
             em.close();
         }
     }
-//    public static Cart sellectProduct(int productID){
+//public static Cart selectCart(Long buyerID) {
+//        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+//
 //        String qString = "SELECT u FROM Cart u " +
-//                "WHERE u.id = :email";
-//        TypedQuery<Buyer> q = em.createQuery(qString, Buyer.class);
-//        q.setParameter("email", email);
+//                "WHERE u.buyerid = :buyerID";
+//        TypedQuery<Cart> q = em.createQuery(qString, Cart.class);
+//        q.setParameter("buyerID", buyerID);
+//
 //        try {
-//            Buyer user = q.getSingleResult();
-//            return user;
+//            Cart cart = q.getSingleResult();
+//            return cart;
 //        } catch (NoResultException e) {
 //            return null;
 //        } finally {
 //            em.close();
 //        }
 //    }
+//
+//    public static Cart selectCart() {
+//        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+//
+//        String qString = "SELECT u FROM Cart u";
+//        TypedQuery<Cart> q = em.createQuery(qString, Cart.class);
+//
+//        try {
+//            Cart cart = q.getSingleResult();
+//            return cart;
+//        } catch (NoResultException e) {
+//            return null;
+//        } finally {
+//            em.close();
+//        }
+//    }
+    
+    
 }

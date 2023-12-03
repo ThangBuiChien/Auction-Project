@@ -55,8 +55,18 @@ public class Cart implements Serializable {
         if (listcart == null) {
             listcart = new ArrayList<>();
         }
-        listcart.add(product);
-    }
+        boolean productExist =false;
+        for (Product item :listcart){
+            if(item.getID()==product.getID()){
+                productExist = true;
+                break;
+            }
+        }
+        if (!productExist){
+            listcart.add(product);
+        }
+        
+    }    
     public void removeItem(int productID) {
         // Find the product in the cart based on the product ID
         Iterator<Product> iterator = listcart.iterator();
@@ -68,18 +78,5 @@ public class Cart implements Serializable {
             }
         }
    }
-    public boolean containsItem(Product product) {
-        if (listcart == null) {
-            return false;
-        }
-
-        for (Product item : listcart) {
-            // Assuming each product has a unique ID, you may need to adjust the condition
-            if (item.getID() == product.getID()) {
-                return true;
-            }
-        }
-
-        return false;
-    }
+    
 }
