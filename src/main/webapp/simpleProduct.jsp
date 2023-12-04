@@ -40,6 +40,16 @@
     
     <p>${message}</p>
     
+    
+    <form action="productServlet" method="post">
+        <input type="hidden" name="action" value="loadProductByName"> 
+        <label for="name">Enter product name</label>
+        <input type="text" id="name" name="productNameSearch" required>
+        <br>
+        <input type="Submit" value="Search">
+    </form>
+    
+    
     <c:forEach var="item" items="${sessionScope.products}">
     <tr>
         <td><c:out value='${item.ID}'/></td>

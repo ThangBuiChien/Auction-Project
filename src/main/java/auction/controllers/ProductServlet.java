@@ -64,6 +64,30 @@ public class ProductServlet extends HttpServlet {
             
         }
         
+        else if (action.equals("loadProductByName")) { 
+            String name = request.getParameter("productNameSearch");
+            
+            System.out.println("Naem serch: " + name);
+            
+            
+            List<Product> loadProduct = ProductDB.selectProductsByName(name);
+            
+            System.out.println("Why it null, loadproduct is " + loadProduct);
+            
+            request.setAttribute("product", loadProduct);
+            
+            session.setAttribute("products", loadProduct);
+
+            //url = "/simpleProduct.jsp";
+            
+            url = "/simpleProduct.jsp";
+            
+            
+            
+            //Announce succesfull and send to login.jsp
+            
+        }
+        
         else if (action.equals("loadProductByUser")){
             Buyer currentUser = (Buyer)session.getAttribute("buyer");
             

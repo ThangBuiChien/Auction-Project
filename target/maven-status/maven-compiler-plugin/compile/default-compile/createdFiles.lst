@@ -11,7 +11,6 @@ auction\data\BidDB.class
 auction\business\Receipt_.class
 auction\data\SellerDB.class
 auction\controllers\CartServlet.class
-.netbeans_automatic_build
 auction\controllers\UsersServlet.class
 auction\business\Seller_.class
 auction\business\Notification_.class

@@ -83,6 +83,35 @@ public class ProductDB {
         return users;
     }
     
+    public static List<Product> selectProductsByName(String productName1) {
+    EntityManager em = DBUtil.getEmFactory().createEntityManager();
+
+    String qString = "SELECT p FROM Product p WHERE LOWER(p.productName) LIKE LOWER(:productName1) "
+            + "AND p.productStatus=0";
+    //String qString = "SELECT p FROM Product p WHERE LOWER(p.productName) LIKE LOWER("
+    //            + productName1 + ")";
+
+
+    TypedQuery<Product> q = em.createQuery(qString, Product.class);
+    q.setParameter("productName1", "%" +  productName1 + "%" );
+    
+    System.out.println("the querry is strange: " + qString);
+
+
+
+    List<Product> products;
+    try {
+        products = q.getResultList();
+        if (products == null || products.isEmpty()) {
+            products = null;
+        }
+    } finally {
+        em.close();
+    }
+    return products;
+}
+
+    
     public static List<Product> selectWinningProductsByUser(Buyer user) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         String qString = "SELECT u from Product u" 
