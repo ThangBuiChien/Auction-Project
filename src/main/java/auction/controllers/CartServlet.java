@@ -34,7 +34,6 @@ public class CartServlet extends HttpServlet {
 
         if (action.equals("addcart")) {
             Buyer currentBuyer = (Buyer) session.getAttribute("buyer");
-            Long currentBuyerID = currentBuyer.getId();
             
             // Retrieve product code from the request parameters
             String productCode = request.getParameter("productCode");
@@ -70,24 +69,18 @@ public class CartServlet extends HttpServlet {
             } 
         
         }
-        else if (action.equals ("deletecart")) {
+        else if (action.equals("deletecart")) {
+            String productCode = request.getParameter("productCode");
+            
+            if (productCode != null && !productCode.isEmpty()) {
                 Cart cart = (Cart) session.getAttribute("cart");
-                if (cart != null) {
-                    // Retrieve product ID from the request parameters
-                    String productIDParam = request.getParameter("productID");
-
-                    if (productIDParam != null && !productIDParam.isEmpty()) {
-                        // Convert product ID to int
-                        int currentProductID = Integer.parseInt(productIDParam);
-
-                        // Remove the item from the cart
-                        cart.removeItem(currentProductID);
-
-                        session.setAttribute("cart", cart);
-                        url = "/simpleCart.jsp";
-                    }
-                }
+                int currentProductID = Integer.parseInt(productCode);
+                cart.removeItem(currentProductID);
+                CartDB.update(cart);
+                session.setAttribute("cart", cart);
+                url = "/simpleCart.jsp";
             }
+        }
         
         else if (action.equals ("loadCart")){
             Buyer currentUser = (Buyer)session.getAttribute("user");

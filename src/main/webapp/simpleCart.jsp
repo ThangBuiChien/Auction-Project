@@ -67,11 +67,12 @@
             </form>
         </td>
         <td>
-            <form action="cart" method="post">
-                <input type="hidden" name="action" value="deletecart">
-                <input type="hidden" name="productCode" value="<c:out value='${item.ID}'/>">
-                <input type="submit" value="delete">
-                </td>
+          <form action="cart" method="post">
+            <input type="hidden" name="action" value="deletecart">
+            <input type="hidden" name="productCode" value="<c:out value='${item.ID}'/>">
+            <input type="submit" value="delete" name="action">
+          </form>
+        </td>
         
     </tr>
     </c:forEach>

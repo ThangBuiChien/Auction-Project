@@ -85,13 +85,13 @@ public class Cart implements Serializable {
     }  
     
     public void removeItem(int productID) {
-        // Find the product in the cart based on the product ID
-        Iterator<Product> iterator = listcart.iterator();
-        while (iterator.hasNext()) {
-            Product item = iterator.next();
+        if (listcart != null) {
+        for (int i = 0; i < listcart.size(); i++) {
+            Product item = listcart.get(i);
             if (item.getID() == productID) {
-                iterator.remove();
-                break; // Assuming each product ID is unique, exit loop after removal
+                listcart.remove(i);
+                break;
+                }
             }
         }
    }
