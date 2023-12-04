@@ -75,11 +75,14 @@ public class Cart implements Serializable {
                 //update the new price for existed product and winer
                 item.setCurrentPrice(product.getCurrentPrice());
                 item.setWinner(product.getWinner());
+                System.out.println("Cart - Update Product - id = " + item.getID());
                 break;
             }
         }
         if (!productExist){
             listcart.add(product);
+            System.out.println("Cart - Add new Product - ID = " + product.getID());
+
         }
         
     }  

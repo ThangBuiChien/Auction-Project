@@ -92,6 +92,8 @@ public class UsersServlet extends HttpServlet {
                     //session.setAttribute("user", currentSeller);
                     url = "/simpleMainPage.jsp";
                     
+                    
+                    
                 }
                 else{
                     url = "/simpleAddInfoBuyer.jsp";

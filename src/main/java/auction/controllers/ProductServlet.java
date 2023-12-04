@@ -13,6 +13,7 @@ import auction.business.Product;
 import auction.business.Buyer;
 import auction.business.Cart;
 import auction.business.Notification;
+import auction.data.CartDB;
 import java.text.ParseException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -252,8 +253,12 @@ public class ProductServlet extends HttpServlet {
                 
                 //store data to cart
                 
-                Cart currentCart = (Cart) session.getAttribute("cart");
+                Cart currentCart = CartDB.selectCart(currentBuyer);
                 currentCart.addItem(currentProduct);
+                CartDB.update(currentCart);
+                session.setAttribute("cart", currentCart);
+
+                
                 
                 
                 
@@ -272,16 +277,22 @@ public class ProductServlet extends HttpServlet {
             
             List<Product> loadProduct = ProductDB.selectBiddingProducts();
             
+            //older version
             request.setAttribute("product", loadProduct);           
             session.setAttribute("products", loadProduct);          
             request.setAttribute("message", message);
             
+            
 
             //url = "/simpleProduct.jsp";
             
-            //url = "/simpleProduct.jsp"; 
+            url = "/simpleProduct.jsp"; 
             
-            url = "/simpleCart.jsp"; 
+            
+            //to Cart
+            //url = "/simpleCart.jsp"; 
+            
+            //url = "/simpleCart.jsp";
             
             
             

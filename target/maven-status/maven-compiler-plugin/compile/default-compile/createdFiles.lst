@@ -6,9 +6,12 @@ auction\business\Product.class
 auction\business\User1_.class
 com\mycompany\auction\project\JakartaRestConfiguration.class
 auction\business\Seller.class
+auction\data\CartDB.class
 auction\data\BidDB.class
 auction\business\Receipt_.class
 auction\data\SellerDB.class
+auction\controllers\CartServlet.class
+.netbeans_automatic_build
 auction\controllers\UsersServlet.class
 auction\business\Seller_.class
 auction\business\Notification_.class
