@@ -5,7 +5,7 @@
    version="4.0">
     
     <welcome-file-list>
-        <welcome-file>simpleLogin.jsp</welcome-file>
+        <welcome-file>LoginForm.jsp</welcome-file>
     </welcome-file-list>
     
     <session-config>

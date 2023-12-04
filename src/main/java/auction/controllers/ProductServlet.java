@@ -56,7 +56,7 @@ public class ProductServlet extends HttpServlet {
 
             //url = "/simpleProduct.jsp";
             
-            url = "/simpleProduct.jsp";
+            url = "/finalproduct.jsp";
             
             
             
@@ -80,7 +80,7 @@ public class ProductServlet extends HttpServlet {
 
             //url = "/simpleProduct.jsp";
             
-            url = "/simpleProduct.jsp";
+            url = "/finalproduct.jsp";
             
             
             
@@ -159,7 +159,7 @@ public class ProductServlet extends HttpServlet {
             System.out.println("Call FROM outside schedules, add product succesful!!!!!!!!");
             System.out.println("This is endDateTime from Product " + newProduct.getEndDatetime() );
 
-            url = "/simpleProduct.jsp";
+            url = "/finalproduct.jsp";
             
             
             ////////////Automatically call the GetFinalWinner
@@ -310,7 +310,7 @@ public class ProductServlet extends HttpServlet {
 
             //url = "/simpleProduct.jsp";
             
-            url = "/simpleProduct.jsp"; 
+            url = "/finalproduct.jsp"; 
             
             
             //to Cart
@@ -347,7 +347,7 @@ public class ProductServlet extends HttpServlet {
 
             //url = "/simpleProduct.jsp";
             
-            url = "/simpleProduct.jsp"; 
+            url = "/finalproduct.jsp"; 
             
             
 
@@ -355,7 +355,7 @@ public class ProductServlet extends HttpServlet {
         }
         else if(action.equals("Addproduct"))
         {
-            url ="/simpleAddProduct.jsp";
+            url ="/AddProduct.jsp";
         }
         
         getServletContext()

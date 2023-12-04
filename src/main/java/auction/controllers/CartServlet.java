@@ -63,7 +63,7 @@ public class CartServlet extends HttpServlet {
                             
                             session.setAttribute("cart", cart);
                         
-                            url = "/simpleCart.jsp";
+                            url = "/cartfinal.jsp";
                           
                          
                     }
@@ -79,7 +79,7 @@ public class CartServlet extends HttpServlet {
                 cart.removeItem(currentProductID);
                 CartDB.update(cart);
                 session.setAttribute("cart", cart);
-                url = "/simpleCart.jsp";
+                url = "/cartfinal.jsp";
             }
         }
         
@@ -88,10 +88,14 @@ public class CartServlet extends HttpServlet {
             Cart currentCart = CartDB.selectCart(currentUser);
             request.setAttribute("cart", currentCart);
             
-            url = "/simpleCart.jsp";
+            url = "/cartfinal.jsp";
             
         }
-        
+        else if (action.equals ("shop")){
+            
+            url = "/simpleProduct.jsp";
+            
+        }
         getServletContext().getRequestDispatcher(url).forward(request, response);
     }
 
