@@ -21,7 +21,7 @@ public class Product implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long productID;
+    private int productID;
     private String productName;
     private String tag;
     private String description;
@@ -43,18 +43,18 @@ public class Product implements Serializable {
     @OneToMany(fetch=EAGER, cascade=CascadeType.PERSIST)  
     private List<Buyer> follower;
     
-    //store the current winner
+
     @ManyToOne(fetch=FetchType.EAGER)
     private Buyer winner;
-    
+
     
     public Product() {}
     
-    public Long getID() {
+    public int getID() {
         return productID;
     }
 
-    public void setID(Long productID) {
+    public void setID(int productID) {
         this.productID = productID;
     }
     public String getProductName() {
@@ -129,9 +129,11 @@ public class Product implements Serializable {
     public List<Buyer> getFollower() {
         return follower;
     }
+
     
     public void setWinner(Buyer winner) {
         this.winner = winner;
+
     }
 
     public Buyer getWinner() {

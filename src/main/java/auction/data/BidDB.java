@@ -11,17 +11,17 @@ import javax.persistence.TypedQuery;
 
 import auction.business.Bid;
 
-/**
- *
- * @author ThangDz
- */
+
+
 public class BidDB {
     public static void insert(Bid newBid) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
         trans.begin();        
         try {
+
             em.persist(newBid);
+
             trans.commit();
         } catch (Exception e) {
             System.out.println(e);
@@ -30,4 +30,21 @@ public class BidDB {
             em.close();
         }
     }
+
+    public static void update(Bid bid) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        trans.begin();       
+        try {
+            em.merge(bid);
+            trans.commit();
+        } catch (Exception e) {
+            System.out.println(e);
+            trans.rollback();
+        } finally {
+            em.close();
+        }
+    }
+    
+
 }

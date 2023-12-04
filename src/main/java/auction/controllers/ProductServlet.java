@@ -11,6 +11,7 @@ import auction.data.NotiDB;
 
 import auction.business.Product;
 import auction.business.Buyer;
+import auction.business.Cart;
 import auction.business.Notification;
 import java.text.ParseException;
 import java.util.concurrent.Executors;
@@ -137,7 +138,7 @@ public class ProductServlet extends HttpServlet {
             
             
             ////////////Automatically call the GetFinalWinner
-            Long productID = newProduct.getID();
+            int productID = newProduct.getID();
             
             ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
             
@@ -221,7 +222,7 @@ public class ProductServlet extends HttpServlet {
             int newBidPrice = Integer.parseInt(strNewBidPrice);
             
             String message = "";
-            Product currentProduct = ProductDB.selectProduct(id);
+            Product currentProduct = ProductDB.selectProduct((int) id);
             
             System.out.println("This is id: " + strId);
             
@@ -249,6 +250,12 @@ public class ProductServlet extends HttpServlet {
                 ProductDB.update(currentProduct);
                 
                 
+                //store data to cart
+                
+                Cart currentCart = (Cart) session.getAttribute("cart");
+                currentCart.addItem(currentProduct);
+                
+                
                 
             }
                 else{
@@ -272,7 +279,9 @@ public class ProductServlet extends HttpServlet {
 
             //url = "/simpleProduct.jsp";
             
-            url = "/simpleProduct.jsp"; 
+            //url = "/simpleProduct.jsp"; 
+            
+            url = "/simpleCart.jsp"; 
             
             
             

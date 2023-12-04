@@ -1,26 +1,35 @@
-<%-- 
-    Document   : simpleProduct
-    Created on : Nov 28, 2023, 9:02:05?AM
-    Author     : Thang
---%>
 
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <title>TDD e-Commerce Website</title>
-    <link rel="stylesheet" href="style/main.css" type="text/css"/>
-</head>
-<body>
-    
-<h1>This is our lovely product</h1>
-<form action="productServlet">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>TĐĐ Auctions</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="cart.css" type="text/css"/>
+    </head>
+    <body>
+      <header>
+        <h1>Welcome to TĐĐ Auctions</h1>
+      </header>
+      <nav class="navigation">
+      <div class="nav-panel"><a href="index.html">Home</a></div>
+      <div class="nav-panel">Seller</div>
+      <div class="nav-panel"><a href="product.jsp">All Products</a></div>
+      <div class="nav-panel">Register</div>
+      <div class="nav-panel"><a href="contact.html">Contact</a></div>
+    </nav>
+
+    <section>
+      <h2>Featured Auction Products</h2>
+      <table>
+    <form action="productServlet">
         <button> Load data </button>
-</form>
+    </form>
+          
+
+    <tr>
 <table>
-    
-    
-    
     <tr>
         <th>product ID </th>
         <th>product Name </th>
@@ -30,14 +39,10 @@
         <th class="right">starting Bid Price</th>
         <th class="right">current Price</th>
         <th class="right">buy Now Price</th>
-        <th>End time </th>
         <th>&nbsp;</th>
-     </tr>
-     
-        
+    </tr>
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
     <p>${message}</p>
     
     <c:forEach var="item" items="${sessionScope.products}">
@@ -51,12 +56,9 @@
         <td class="right"><c:out value='${item.startingBidPrice}'/></td>
         <td class="right"><c:out value='${item.currentPrice}'/></td>
         <td class="right"><c:out value='${item.buyNowPrice}'/></td>
-        
-        <td><c:out value='${item.getEndDatetime()}'/></td>
 
-        <td><form action="cart" method="post">
-                <input type="hidden" name="action" value="addcart"> 
-                <input type="hidden" name="productCode" value="<c:out value='${item.ID}'/>">
+        <td><form action="CartServlet" method="post">
+                <input type="hidden" name="productCode" value="<c:out value='${item.buyNowPrice}'/>">
                 <input type="submit" value="Add To Cart">
             </form></td>
             
@@ -66,7 +68,7 @@
               
               <input type="hidden" name="productID" 
                      value="<c:out value='${item.ID}'/>">              
-              <input type=text name="newBidPrice"  placeholder=""
+              <input type=text name="newBidPrice"  placeholder="Enter your discount here"
                      value="<c:out value='${item.currentPrice}'/>" id="newBidPrice" >
               <input type="submit" value="Enter new bid Price">
             </form>
@@ -87,8 +89,10 @@
 
     
 </table>
-    
-
-    
+     
+    <br> 
+  <footer class="footer">
+    <p>&copy; 2023 TĐĐ Auctions. All Rights Reserved.</p>
+  </footer>
 </body>
 </html>

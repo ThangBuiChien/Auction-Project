@@ -4,6 +4,7 @@
  */
 package auction.data;
 
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
@@ -14,10 +15,7 @@ import auction.business.Buyer;
 
 import java.util.List;
 
-/**
- *
- * @author ThangDz
- */
+
 public class ProductDB {
      public static void insert(Product product) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
@@ -34,6 +32,7 @@ public class ProductDB {
         }
     }
     
+
     public static void update(Product product) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
@@ -48,6 +47,7 @@ public class ProductDB {
             em.close();
         }
     }
+
     
     public static List<Product> selectProducts() {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
@@ -136,10 +136,12 @@ public class ProductDB {
             Product currentProduct = q.getSingleResult();
             return currentProduct;
         } catch (NoResultException e) {
+
             return null;
         } finally {
             em.close();
         }
+
     }
     
     
