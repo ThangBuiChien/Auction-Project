@@ -54,14 +54,14 @@ public class UsersServlet extends HttpServlet {
             if (BuyerDB.emailExists(newEmail)) {
                 message = "This email address already exists.<br>" +
                           "Please enter another email address.";
-                url = "/simpleRegister.jsp";
+                url = "/RegisteringForm.jsp";
 
             }
             else {
                 message = "Create new account succesfully, please login in";
                 BuyerDB.insert(buyer);
                 SellerDB.insert(seller);
-                url = "/simpleLogin.jsp";
+                 url = "/LoginForm.jsp";
             }
             
             
@@ -104,7 +104,7 @@ public class UsersServlet extends HttpServlet {
             }
             else {
                 message = "Wrong account or password, please try again";
-                url = "/simpleLogin.jsp";
+                url = "/LoginForm.jsp";
                 }
             
             request.setAttribute("message", message);
@@ -113,11 +113,11 @@ public class UsersServlet extends HttpServlet {
         
         else if (action.equals("logOut")){
             session.removeAttribute("user");
-            url = "/simpleLogin.jsp";
+             url = "/LoginForm.jsp";
         }
         
         else if (action.equals("createNewAccount")){
-            url = "/simpleRegister.jsp";
+            url = "/RegisteringForm.jsp";
         }
         
         else if (action.equals("addInformation")){
@@ -157,7 +157,7 @@ public class UsersServlet extends HttpServlet {
             String message = "Update succesfully!";
             request.setAttribute("message", message);
             
-            url = "/simpleLogin.jsp";
+            url = "/LoginForm.jsp";
         
         }
         else if (action.equals("Change")){
