@@ -13,6 +13,7 @@ public class User1 implements Serializable {
     private String email;
     private String firstName;
     private String lastName;
+    
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
