@@ -39,7 +39,7 @@
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
-    <p>${message}</p>
+    
     
     <c:forEach var="item" items="${cart.listcart}">
     <tr>
@@ -66,12 +66,14 @@
               <input type="submit" value="Enter new bid Price">
             </form>
         </td>
+        
         <td>
             <form action="cart" method="post">
                 <input type="hidden" name="action" value="deletecart">
                 <input type="hidden" name="productCode" value="<c:out value='${item.ID}'/>">
                 <input type="submit" value="delete">
-                </td>
+            </form>
+        </td>
         
     </tr>
     </c:forEach>
