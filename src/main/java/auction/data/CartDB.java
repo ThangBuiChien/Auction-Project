@@ -11,6 +11,8 @@ import javax.persistence.TypedQuery;
 import auction.business.*;
 
 public class CartDB {
+    
+    
     public static void insert(Cart cart) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
@@ -39,6 +41,36 @@ public class CartDB {
         } finally {
             em.close();
         }
+    }
+    
+    public static Cart selectCart(Buyer currentUser) {
+        
+
+            
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        
+        String qString = "SELECT u from Cart u "
+            + "WHERE u.buyer = :currentUser";
+        
+        System.out.println("this is the query " + qString);
+        System.out.println("is user send; userID =  " + currentUser);
+        
+        TypedQuery<Cart> q = em.createQuery(qString, Cart.class);
+        
+        q.setParameter("currentUser", currentUser);
+
+
+        Cart cart;
+        try {
+            cart = q.getSingleResult();
+
+        } 
+        catch (NoResultException e) {
+            cart = null; // Handle case where no result is found
+        } finally {
+            em.close();
+        }
+        return cart;
     }
 //public static Cart selectCart(Long buyerID) {
 //        EntityManager em = DBUtil.getEmFactory().createEntityManager();

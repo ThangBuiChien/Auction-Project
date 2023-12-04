@@ -16,7 +16,7 @@
         
         <a href="./simpleProduct.jsp" class="margin_left">Shoping</a> <br>
     
-        <a href="./cart.jsp" class="margin_left">My cart</a> <br>
+        <a href="./cart?action=loadCart" class="margin_left">My cart</a> <br>
     
         <a href="./productServlet?action=loadProductByUser" class="margin_left">My winning product</a>
     </body>

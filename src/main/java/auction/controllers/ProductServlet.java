@@ -11,6 +11,7 @@ import auction.data.NotiDB;
 
 import auction.business.Product;
 import auction.business.Buyer;
+import auction.business.Cart;
 import auction.business.Notification;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -147,7 +148,7 @@ public class ProductServlet extends HttpServlet {
                 e.printStackTrace();
             }
 
-            }, 100, TimeUnit.SECONDS);
+            }, 200, TimeUnit.SECONDS);
             
             
 
@@ -202,6 +203,12 @@ public class ProductServlet extends HttpServlet {
                 ProductDB.update(currentProduct);
                 
                 
+                //store data to cart
+                
+                Cart currentCart = (Cart) session.getAttribute("cart");
+                currentCart.addItem(currentProduct);
+                
+                
                 
             }
                 else{
@@ -225,7 +232,9 @@ public class ProductServlet extends HttpServlet {
 
             //url = "/simpleProduct.jsp";
             
-            url = "/simpleProduct.jsp"; 
+            //url = "/simpleProduct.jsp"; 
+            
+            url = "/simpleCart.jsp"; 
             
             
             

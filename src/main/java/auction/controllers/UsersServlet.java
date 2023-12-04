@@ -8,7 +8,9 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 import auction.data.BuyerDB;
 import auction.business.Buyer;
+import auction.business.Cart;
 import auction.business.Notification;
+import auction.data.CartDB;
 import auction.data.NotiDB;
  
 @WebServlet("/userLogin")
@@ -123,6 +125,13 @@ public class UsersServlet extends HttpServlet {
             
             //Store to DB
             BuyerDB.update(currentBuyer);
+            
+            //add cart to usesr
+            Cart newCart = new Cart();
+            newCart.setBuyer(currentBuyer);
+            CartDB.insert(newCart);
+            
+            session.setAttribute("cart", newCart);
             
             //
             String message = "Update succesfully!";

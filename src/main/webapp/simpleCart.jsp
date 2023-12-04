@@ -15,7 +15,7 @@
 <body>
     
 <h1>This is your cart</h1>
-
+<p>${message}</p>
 <table>
     
     

@@ -15,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -36,6 +37,9 @@ public class Cart implements Serializable {
      
     @OneToMany(fetch=EAGER, cascade=CascadeType.PERSIST)  
     private List<Product> listcart;
+    
+    @OneToOne
+    private Buyer buyer;
 
     public int getId() {
         return id;
@@ -47,10 +51,19 @@ public class Cart implements Serializable {
     public void setListcart(List<Product> listcart) {
         this.listcart = listcart;
     }
+    
+    public Buyer getBuyer() {
+        return buyer;
+    }
+
+    public void setBuyer(Buyer currentbuyer) {
+        this.buyer = currentbuyer;
+    }
 
     public List<Product> getListcart() {
         return listcart;
     }
+    //if not exist then add, if exist then update
     public void addItem(Product product) {
         if (listcart == null) {
             listcart = new ArrayList<>();
@@ -59,6 +72,9 @@ public class Cart implements Serializable {
         for (Product item :listcart){
             if(item.getID()==product.getID()){
                 productExist = true;
+                //update the new price for existed product and winer
+                item.setCurrentPrice(product.getCurrentPrice());
+                item.setWinner(product.getWinner());
                 break;
             }
         }
@@ -66,7 +82,8 @@ public class Cart implements Serializable {
             listcart.add(product);
         }
         
-    }    
+    }  
+    
     public void removeItem(int productID) {
         // Find the product in the cart based on the product ID
         Iterator<Product> iterator = listcart.iterator();

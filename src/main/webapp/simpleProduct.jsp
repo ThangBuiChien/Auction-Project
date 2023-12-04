@@ -63,7 +63,7 @@
               
               <input type="hidden" name="productID" 
                      value="<c:out value='${item.ID}'/>">              
-              <input type=text name="newBidPrice"  placeholder="Enter your discount here"
+              <input type=text name="newBidPrice"  placeholder=""
                      value="<c:out value='${item.currentPrice}'/>" id="newBidPrice" >
               <input type="submit" value="Enter new bid Price">
             </form>
