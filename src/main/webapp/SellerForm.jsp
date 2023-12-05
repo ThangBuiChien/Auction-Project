@@ -25,7 +25,7 @@
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="index.jsp">TĐĐ'Auction</a>
+        <a class="navbar-brand" href="index.jsp">TDD'Auction</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -33,16 +33,16 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
             <ul class="navbar-nav m-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="index.jsp">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" >Product</a>
+                    <a class="nav-link" href="./productServlet?action=loadProduct" >Product</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Cart</a>
+                    <a class="nav-link" href="./cart?action=loadCart">Cart</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
+                    <a class="nav-link" href="contact.jsp">Contact</a>
                 </li>
             </ul>
 
@@ -99,6 +99,11 @@
         <input type="hidden" name="action" value="Addproduct">        
         
         <input type="submit" value="Add product" class="margin_left">
+    </form>
+    <form action="productServlet" method="post">
+        <input type="hidden" name="action" value="loadProductByUser">        
+        
+        <input type="submit" value="Winning Product" class="margin_left">
     </form>
 </section>
 
