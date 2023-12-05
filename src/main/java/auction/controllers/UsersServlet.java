@@ -199,6 +199,8 @@ public class UsersServlet extends HttpServlet {
             List<Notification> tempNofi = NotiDB.selectNotifications(currentUser);
                 
             request.setAttribute("nofi", tempNofi);
+            
+            url = "/index.jsp";
        
 
             }
