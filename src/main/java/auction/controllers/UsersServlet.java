@@ -96,7 +96,7 @@ public class UsersServlet extends HttpServlet {
                     
                 }
                 else{
-                    url = "/simpleAddInfoBuyer.jsp";
+                    url = "/AddInfoUserForm.jsp";
                 }
                 
                 
