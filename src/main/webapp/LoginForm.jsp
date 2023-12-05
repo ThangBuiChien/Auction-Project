@@ -26,6 +26,7 @@
             <div class="login-form">
                <form>
                   <div class="form-group">
+                      <a href="AddProduct.jsp"></a>
                      <label>User Name</label>
                      <input type="hidden" name="action" value="login"> 
                      <input type="text" class="form-control" name="email" placeholder="User Name">

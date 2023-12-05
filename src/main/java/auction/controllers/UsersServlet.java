@@ -90,7 +90,7 @@ public class UsersServlet extends HttpServlet {
                     message = "Login successfully";
                     session.setAttribute("user", currentBuyer);
                     //session.setAttribute("user", currentSeller);
-                    url = "/simpleMainPage.jsp";
+                    url = "/index.jsp";
                     
                     
                     
@@ -161,7 +161,7 @@ public class UsersServlet extends HttpServlet {
         
         }
         else if (action.equals("Change")){
-            url = "/simpleChangeInfo.jsp";
+            url = "/ChangInfoUser.jsp";
         } 
         else if (action.equals("ChangeInfo")){
             
@@ -176,11 +176,19 @@ public class UsersServlet extends HttpServlet {
             currentSeller.setPhoneNumber(phoneNumber);
             SellerDB.update(currentSeller);
             
+            Buyer currentBuyer = (Buyer) session.getAttribute("buyer");
+            currentBuyer.setFirstName(firstName);
+            currentBuyer.setLastName(lastName);
+            currentBuyer.setAddress(companyName);
+            currentBuyer.setDebitCardInfo(phoneNumber);
+            BuyerDB.update(currentBuyer);
+            
+
             //
             String message = "Update succesfully!";
             request.setAttribute("message", message);
             
-            url = "/simpleSellerInfo.jsp";
+            url = "/SellerForm.jsp";
         } 
 
         else if (action.equals("loadNofi")){
@@ -197,11 +205,20 @@ public class UsersServlet extends HttpServlet {
             catch (Exception e) {
                 // Catch any exceptions and print the stack trace
                 String mess = "You has been log out, plaese log in again!";
-                url = "/simpleLogin.jsp";
                 request.setAttribute("message", mess);
-
-                
+                url = "/LoginForm.jsp";
             }
+            
+        }
+        
+        else if (action.equals("contact")){
+            
+                // Catch any exceptions and print the stack trace
+                String mess = "You will be receive our email soon!";
+                request.setAttribute("message", mess);
+                System.out.println("this was in contact servlet");
+                url = "/contact.jsp";
+            
             
         }
             
