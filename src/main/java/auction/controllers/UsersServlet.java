@@ -163,7 +163,7 @@ public class UsersServlet extends HttpServlet {
         
         }
         else if (action.equals("Change")){
-            url = "/simpleChangeInfo.jsp";
+            url = "/ChangInfoUser.jsp";
         } 
         else if (action.equals("ChangeInfo")){
             
@@ -210,6 +210,17 @@ public class UsersServlet extends HttpServlet {
                 request.setAttribute("message", mess);
                 url = "/LoginForm.jsp";
             }
+            
+        }
+        
+        else if (action.equals("contact")){
+            
+                // Catch any exceptions and print the stack trace
+                String mess = "You will be receive our email soon!";
+                request.setAttribute("message", mess);
+                System.out.println("this was in contact servlet");
+                url = "/contact.jsp";
+            
             
         }
             
