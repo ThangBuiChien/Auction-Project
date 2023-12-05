@@ -1,30 +1,9 @@
-<<<<<<< HEAD
-D:\gitspace\Auction-Project\src\main\java\auction\business\Notification.java
-D:\gitspace\Auction-Project\src\main\java\auction\controllers\CartServlet.java
-D:\gitspace\Auction-Project\src\main\java\auction\business\Receipt.java
-D:\gitspace\Auction-Project\src\main\java\auction\controllers\UsersServlet.java
-D:\gitspace\Auction-Project\src\main\java\auction\business\Seller.java
-D:\gitspace\Auction-Project\src\main\java\auction\data\CartDB.java
-D:\gitspace\Auction-Project\src\main\java\auction\data\NotiDB.java
-D:\gitspace\Auction-Project\src\main\java\com\mycompany\auction\project\resources\JakartaEE8Resource.java
-D:\gitspace\Auction-Project\src\main\java\auction\controllers\ProductServlet.java
-D:\gitspace\Auction-Project\src\main\java\auction\business\Cart.java
-D:\gitspace\Auction-Project\src\main\java\auction\data\BidDB.java
-D:\gitspace\Auction-Project\src\main\java\auction\data\DBUtil.java
-D:\gitspace\Auction-Project\src\main\java\auction\business\User1.java
-D:\gitspace\Auction-Project\src\main\java\auction\data\ProductDB.java
-D:\gitspace\Auction-Project\src\main\java\auction\data\SellerDB.java
-D:\gitspace\Auction-Project\src\main\java\com\mycompany\auction\project\JakartaRestConfiguration.java
-D:\gitspace\Auction-Project\src\main\java\auction\business\Bid.java
-D:\gitspace\Auction-Project\src\main\java\auction\data\BuyerDB.java
-D:\gitspace\Auction-Project\src\main\java\auction\business\Buyer.java
-D:\gitspace\Auction-Project\src\main\java\auction\business\Product.java
-=======
 C:\Users\Administrator\Documents\GitHub\Auction-Project\src\main\java\auction\business\Receipt.java
 C:\Users\Administrator\Documents\GitHub\Auction-Project\src\main\java\auction\business\Seller.java
 C:\Users\Administrator\Documents\GitHub\Auction-Project\src\main\java\auction\data\ProductDB.java
 C:\Users\Administrator\Documents\GitHub\Auction-Project\src\main\java\auction\data\SellerDB.java
 C:\Users\Administrator\Documents\GitHub\Auction-Project\src\main\java\auction\business\User1.java
+C:\Users\Administrator\Documents\GitHub\Auction-Project\src\main\java\auction\data\ReciptDB.java
 C:\Users\Administrator\Documents\GitHub\Auction-Project\src\main\java\auction\controllers\ProductServlet.java
 C:\Users\Administrator\Documents\GitHub\Auction-Project\src\main\java\auction\business\Product.java
 C:\Users\Administrator\Documents\GitHub\Auction-Project\src\main\java\auction\data\NotiDB.java
@@ -40,4 +19,3 @@ C:\Users\Administrator\Documents\GitHub\Auction-Project\src\main\java\com\mycomp
 C:\Users\Administrator\Documents\GitHub\Auction-Project\src\main\java\auction\business\Cart.java
 C:\Users\Administrator\Documents\GitHub\Auction-Project\src\main\java\auction\business\Notification.java
 C:\Users\Administrator\Documents\GitHub\Auction-Project\src\main\java\auction\business\Buyer.java
->>>>>>> main
