@@ -200,7 +200,7 @@ public class UsersServlet extends HttpServlet {
                 
             request.setAttribute("nofi", tempNofi);
        
-            url = "/simpleNotification.jsp";
+
             }
             catch (Exception e) {
                 // Catch any exceptions and print the stack trace
