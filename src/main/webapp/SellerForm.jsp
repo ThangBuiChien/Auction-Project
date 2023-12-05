@@ -18,8 +18,8 @@
     <link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600" rel="stylesheet" type="text/css">
    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <script src="https://kit.fontawesome.com/a110f8f65c.js" crossorigin="anonymous"></script>
-   <link rel="stylesheet" href="./style/SellerCss.css">
     <link href="./style/main.css" rel="stylesheet" type="text/css">
+    <link href="./style/SellerCss.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 
@@ -74,9 +74,9 @@
         <h1 class="jumbotron-heading">YOUR INFOMATION</h1>
     </div>
 </section>
- 
-              
- <p>Here is the information that you entered:</p>
+ <section>
+    
+<p>Here is the information that you entered:</p>
     <label  class="right">Email: </label>
     <span>${seller.email}</span><br>
     <label class="right">First Name: </label>
@@ -100,6 +100,8 @@
         
         <input type="submit" value="Add product" class="margin_left">
     </form>
+</section>
+
 
 </body>
 </html>

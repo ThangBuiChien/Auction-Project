@@ -161,7 +161,7 @@ public class UsersServlet extends HttpServlet {
         
         }
         else if (action.equals("Change")){
-            url = "/simpleChangeInfo.jsp";
+            url = "/ChangInfoUser.jsp";
         } 
         else if (action.equals("ChangeInfo")){
             

@@ -18,14 +18,13 @@
     <link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600" rel="stylesheet" type="text/css">
    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <script src="https://kit.fontawesome.com/a110f8f65c.js" crossorigin="anonymous"></script>
-   <link rel="stylesheet" href="./style/SellerCss.css">
     <link href="./style/main.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="index.jsp">TĐĐ'Auction</a>
+        <a class="navbar-brand" href="index.jsp">TDD'Auction</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -55,13 +54,13 @@
                         </button>
                     </div>
                 </div>
-              <a class="btn btn-success btn-sm ml-3" href="#">
+              <a class="btn btn-success btn-sm ml-3" class="notification" href="#">
                 <i class="fa-solid fa-bell"></i>
               </a>
               <a class="btn btn-success btn-sm ml-3"  href="SellerForm.jsp">
                 <i class="fa-solid fa-user">${seller.firstName}</i>
               </a>
-              <a class="btn btn-success btn-sm ml-3"  href="./userLogin?action=logOut" >
+              <a class="btn btn-success btn-sm ml-3"   href="./userLogin?action=logOut" >
                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
               </a>
             </form>
