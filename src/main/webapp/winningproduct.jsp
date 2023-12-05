@@ -82,7 +82,7 @@
 </nav>
 <section class="jumbotron text-center">
     <div class="container">
-        <h1 class="jumbotron-heading">TDD Auction Cart</h1>
+        <h1 class="jumbotron-heading">TDD Auction Winning List</h1>
      </div>
 </section>
 
