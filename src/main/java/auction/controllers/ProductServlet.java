@@ -390,7 +390,7 @@ public class ProductServlet extends HttpServlet {
             
             
             
-            url ="/simpleRecipt.jsp";
+            url ="/receipt.jsp";
         }
         
         getServletContext()
