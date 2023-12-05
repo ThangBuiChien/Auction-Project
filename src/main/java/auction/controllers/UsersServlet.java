@@ -210,6 +210,17 @@ public class UsersServlet extends HttpServlet {
             }
             
         }
+        
+        else if (action.equals("contact")){
+            
+                // Catch any exceptions and print the stack trace
+                String mess = "You will be receive our email soon!";
+                request.setAttribute("message", mess);
+                System.out.println("this was in contact servlet");
+                url = "/contact.jsp";
+            
+            
+        }
             
             
             

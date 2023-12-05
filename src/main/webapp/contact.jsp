@@ -103,11 +103,20 @@
                             <textarea class="form-control" id="message" rows="6" required></textarea>
                         </div>
                         <div class="mx-auto">
-                        <form action="userLogin" method="post">
+                        <form action="userLogin" method="GET">
                             <input type="hidden" name="action" value="contact"> 
-                            <button type="submit" class="btn btn-primary text-right">Submit</button></div>
+                            <button type="submit" class="btn btn-primary text-right">Submit</button>
                         </form>
-                    </form>
+                            
+                        </div>
+                            
+                       
+                        
+                        <form action="userLogin" method="GET">
+                                    <input type="hidden" name="action" value="contact"> 
+
+                                    <button type="submit" > Submit222? </button>
+                        </form>
                 </div>
             </div>
         </div>
