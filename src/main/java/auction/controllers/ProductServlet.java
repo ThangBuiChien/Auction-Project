@@ -131,12 +131,20 @@ public class ProductServlet extends HttpServlet {
             } catch (ParseException ex) {
                 Logger.getLogger(ProductServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
+            
             System.out.println("This is endTime from HTML Origin: " + endDateTime);
             System.out.println("This is endTime from HTML convert: " + endTime);
             
             LocalDateTime currentTime = LocalDateTime.now();
             
             Duration duration = Duration.between(currentTime, endTime1);
+            
+            int value = endTime1.compareTo(currentTime);
+            
+            if( value == 1){
+                
+            
             
             long differenceInSeconds = duration.getSeconds();
             
@@ -246,6 +254,15 @@ public class ProductServlet extends HttpServlet {
             }
 
             }, differenceInSeconds, TimeUnit.SECONDS);
+             
+             
+        }
+            else{
+                String message = "Please choose the end time older than current time";
+                request.setAttribute("message", message);
+                
+                url = "/simpleAddProduct.jsp";
+            }
             
             
 
