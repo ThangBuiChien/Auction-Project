@@ -98,7 +98,7 @@ public class ProductServlet extends HttpServlet {
             request.setAttribute("products", loadProduct);
             
             
-            url = "/simpleWinningProduct.jsp";
+            url = "/winningproduct.jsp";
 
             
         }
