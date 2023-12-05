@@ -113,7 +113,9 @@ public class UsersServlet extends HttpServlet {
         
         else if (action.equals("logOut")){
             session.removeAttribute("user");
-             url = "/LoginForm.jsp";
+            String mess = "You has been log out, plaese log in again!";
+                url = "/LoginForm.jsp";
+                request.setAttribute("message", mess);
         }
         
         else if (action.equals("createNewAccount")){
@@ -197,7 +199,7 @@ public class UsersServlet extends HttpServlet {
             catch (Exception e) {
                 // Catch any exceptions and print the stack trace
                 String mess = "You has been log out, plaese log in again!";
-                url = "/simpleLogin.jsp";
+                url = "/LoginForm.jsp";
                 request.setAttribute("message", mess);
 
                 

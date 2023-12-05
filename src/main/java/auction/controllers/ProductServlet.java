@@ -281,6 +281,7 @@ public class ProductServlet extends HttpServlet {
 
             
             Buyer currentBuyer = (Buyer) session.getAttribute("buyer");
+            Seller currentSeller = (Seller) session.getAttribute("seller");
             String strNewBidPrice = request.getParameter("newBidPrice");
             
             int newBidPrice = Integer.parseInt(strNewBidPrice);
@@ -290,8 +291,18 @@ public class ProductServlet extends HttpServlet {
             
             System.out.println("This is id: " + strId);
             
+            int isDifference  = 0; 
+            
+            if (!currentBuyer.getEmail().equals(currentProduct.getSeller().getEmail())) {
+                isDifference  = 1;
+            }
+            
+            System.out.println("In bidding price, currentBuyer: " + currentBuyer.getEmail());
+            System.out.println("In bidding price, currentSeller: " + currentProduct.getSeller().getEmail());
+            
+
             if(currentProduct.getProductStatus() == 0){
-                if(newBidPrice > currentProduct.getCurrentPrice()  ){
+                if(newBidPrice > currentProduct.getCurrentPrice() && isDifference  == 1 ){
                 
                 //Get notifaction to last owner
                 Buyer lastWinner = currentProduct.getWinner();
@@ -326,6 +337,10 @@ public class ProductServlet extends HttpServlet {
                 
                 
             }
+                else if (isDifference == 0 ){
+                    message = "You can't bid your own product";
+
+                }
                 else{
                 message = "Now bid price is not higer than current bid price, please choose a new bid price";
 
