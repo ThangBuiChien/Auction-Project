@@ -40,6 +40,7 @@
             <div class="card card-5">
                 <div class="card-heading">
                     <h2 class="title">Add Product Form</h2>
+                    
                 </div>
                 <div class="card-body">
                     <form action="productServlet" method="post">
@@ -99,6 +100,9 @@
                                     </div>
                                 </div>
                             </div>
+                              <div class="form-row">
+                              <p><i style="color: red;">${message}</i></p>
+                            </div>          
                         </div>
                         <div>
                            

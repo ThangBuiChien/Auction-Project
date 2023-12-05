@@ -54,8 +54,7 @@ public class ProductServlet extends HttpServlet {
             
             session.setAttribute("products", loadProduct);
 
-            //url = "/simpleProduct.jsp";
-            
+          
             url = "/finalproduct.jsp";
             
             
@@ -78,7 +77,6 @@ public class ProductServlet extends HttpServlet {
             
             session.setAttribute("products", loadProduct);
 
-            //url = "/simpleProduct.jsp";
             
             url = "/finalproduct.jsp";
             
@@ -130,7 +128,9 @@ public class ProductServlet extends HttpServlet {
             LocalDateTime currentTime = LocalDateTime.now();
             
             Duration duration = Duration.between(currentTime, endTime1);
+            int value = endTime1.compareTo(currentTime);
             
+            if( value == 1){
             long differenceInSeconds = duration.getSeconds();
             
             System.out.println("Difference in seconds: " + differenceInSeconds);
@@ -155,7 +155,7 @@ public class ProductServlet extends HttpServlet {
             
             session.setAttribute("products", loadProduct);
 
-            //url = "/simpleProduct.jsp";
+            
             System.out.println("Call FROM outside schedules, add product succesful!!!!!!!!");
             System.out.println("This is endDateTime from Product " + newProduct.getEndDatetime() );
 
@@ -227,8 +227,13 @@ public class ProductServlet extends HttpServlet {
             
             
 
-            
-            
+            }
+            else{
+                String message = "Please choose the end time older than current time";
+                request.setAttribute("message", message);
+                
+                url = "/AddProduct.jsp";
+            }
             
             
             
@@ -308,15 +313,12 @@ public class ProductServlet extends HttpServlet {
             
             
 
-            //url = "/simpleProduct.jsp";
+            
             
             url = "/finalproduct.jsp"; 
             
             
-            //to Cart
-            //url = "/simpleCart.jsp"; 
             
-            //url = "/simpleCart.jsp";
             
             
             
@@ -345,7 +347,7 @@ public class ProductServlet extends HttpServlet {
             request.setAttribute("message", message);
             
 
-            //url = "/simpleProduct.jsp";
+            
             
             url = "/finalproduct.jsp"; 
             
