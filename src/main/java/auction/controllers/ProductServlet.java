@@ -13,13 +13,17 @@ import auction.business.Product;
 import auction.business.Buyer;
 import auction.business.Cart;
 import auction.business.Notification;
+import auction.business.Receipt;
+import auction.business.Seller;
 import auction.data.CartDB;
+import auction.data.ReciptDB;
 import java.text.ParseException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -94,7 +98,7 @@ public class ProductServlet extends HttpServlet {
             request.setAttribute("products", loadProduct);
             
             
-            url = "/simpleWinningProduct.jsp";
+            url = "/winningproduct.jsp";
 
             
         }
@@ -111,6 +115,9 @@ public class ProductServlet extends HttpServlet {
             String endDateTime = request.getParameter("endDatetime");
             Date endTime = null;
             LocalDateTime endTime1 = null;
+            
+            Seller currentseller =(Seller) session.getAttribute("seller");
+            
             try {
                 
                 //endTime = new SimpleDateFormat("yyyy/MM/dd HH:mm").parse(endDateTime);
@@ -144,6 +151,8 @@ public class ProductServlet extends HttpServlet {
             newProduct.setCurrentPrice(intStartingBidPrice);
             newProduct.setBuyNowPrice(intBuyNowPrice);
             newProduct.setEndDatetime(endTime);
+            newProduct.setSeller(currentseller);
+            
             
             ProductDB.insert(newProduct);
              
@@ -210,6 +219,16 @@ public class ProductServlet extends HttpServlet {
                 newNofi.setMessage(nofiMessage);
                 
                 NotiDB.insert(newNofi);
+                
+                //Create the recipit
+                Receipt newRecipt = new Receipt();
+                newRecipt.setBuyer(winner);
+                newRecipt.setProduct(currentProduct);
+                LocalDate w = LocalDate.now();
+                
+                newRecipt.setDatetime(w);
+                
+                ReciptDB.insert(newRecipt);
              }
              
              
@@ -358,6 +377,20 @@ public class ProductServlet extends HttpServlet {
         else if(action.equals("Addproduct"))
         {
             url ="/AddProduct.jsp";
+        }
+        else if(action.equals("printInvoice"))
+        {
+            String strId = request.getParameter("productID");
+            long longID = Long.parseLong(strId);
+            Product currentProduct = ProductDB.selectProduct(longID);
+            System.out.println("why it not read !!, product = " + currentProduct);
+            Receipt newReceipt = ReciptDB.selectReceiptByProduct(currentProduct);
+            
+            request.setAttribute("receipt", newReceipt);
+            
+            
+            
+            url ="/receipt.jsp";
         }
         
         getServletContext()
