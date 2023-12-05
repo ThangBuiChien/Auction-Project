@@ -36,7 +36,7 @@
                     <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" >Product</a>
+                    <a class="nav-link" href="./productServlet?action=loadProduct" >Product</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Cart</a>

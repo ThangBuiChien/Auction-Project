@@ -13,6 +13,7 @@ import auction.business.Product;
 import auction.business.Buyer;
 import auction.business.Cart;
 import auction.business.Notification;
+import auction.business.Seller;
 import auction.data.CartDB;
 import java.text.ParseException;
 import java.util.concurrent.Executors;
@@ -25,6 +26,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.jms.Session;
 
 
 @WebServlet("/productServlet")
@@ -111,6 +113,8 @@ public class ProductServlet extends HttpServlet {
             String endDateTime = request.getParameter("endDatetime");
             Date endTime = null;
             LocalDateTime endTime1 = null;
+            
+            Seller currentSeller = (Seller)session.getAttribute("seller");
             try {
                 
                 //endTime = new SimpleDateFormat("yyyy/MM/dd HH:mm").parse(endDateTime);
@@ -144,6 +148,8 @@ public class ProductServlet extends HttpServlet {
             newProduct.setCurrentPrice(intStartingBidPrice);
             newProduct.setBuyNowPrice(intBuyNowPrice);
             newProduct.setEndDatetime(endTime);
+            
+            newProduct.setSeller(currentSeller);
             
             ProductDB.insert(newProduct);
              
@@ -247,7 +253,7 @@ public class ProductServlet extends HttpServlet {
 
             
             Buyer currentBuyer = (Buyer) session.getAttribute("buyer");
-            Seller currentSeller = (Seller) session.getAttribute("seller");
+//            Seller currentSeller = (Seller) session.getAttribute("seller");
             String strNewBidPrice = request.getParameter("newBidPrice");
             
             int newBidPrice = Integer.parseInt(strNewBidPrice);

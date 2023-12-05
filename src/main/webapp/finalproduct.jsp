@@ -29,7 +29,7 @@
                     <a class="nav-link" href="category.html">Seller</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="product.html">Product</a>
+                    <a class="nav-link" href="finalproduct.jsp">Product1</a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="contact.html">Cart <span class="sr-only">(</span></a>
@@ -140,6 +140,10 @@
             </c:forEach>
 
                 </table>
+    
+<!--    <form action="productServlet">
+        <button>load product </button>
+    </form>-->
             </div>
         </div>
         
