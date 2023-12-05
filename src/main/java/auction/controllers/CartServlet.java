@@ -93,7 +93,7 @@ public class CartServlet extends HttpServlet {
         }
         else if (action.equals ("shop")){
             
-            url = "/simpleProduct.jsp";
+            url = "/finalproduct.jsp";
             
         }
         getServletContext().getRequestDispatcher(url).forward(request, response);
