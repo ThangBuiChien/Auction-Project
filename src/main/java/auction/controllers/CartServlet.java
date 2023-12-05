@@ -25,7 +25,7 @@ public class CartServlet extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        String url = "/index.jsp";
+        String url = "/index.html";
 
         // get current action
         String action = request.getParameter("action");

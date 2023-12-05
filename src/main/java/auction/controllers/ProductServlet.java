@@ -37,7 +37,7 @@ public class ProductServlet extends HttpServlet {
         
         HttpSession session = request.getSession();
 
-        String url = "/index.jsp";
+        String url = "/index.html";
         
         // get current action
         String action = request.getParameter("action");
