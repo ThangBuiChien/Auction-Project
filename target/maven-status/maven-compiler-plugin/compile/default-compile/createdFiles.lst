@@ -13,6 +13,7 @@ auction\data\SellerDB.class
 auction\controllers\CartServlet.class
 auction\controllers\UsersServlet.class
 auction\business\Seller_.class
+auction\data\ReciptDB.class
 auction\business\Notification_.class
 auction\business\Cart_.class
 auction\business\Product_.class

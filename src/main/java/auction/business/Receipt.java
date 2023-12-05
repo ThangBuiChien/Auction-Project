@@ -3,12 +3,15 @@ package auction.business;
 import auction.business.Buyer;
 import auction.business.Product;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
 
 
 
@@ -16,7 +19,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class Receipt implements Serializable {
     
-    @OneToOne
+    @ManyToOne
     private Buyer buyer;
     
     @OneToOne
@@ -27,7 +30,7 @@ public class Receipt implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
 
     private Long id;
-    private Date datetime;
+    private LocalDate datetime;
 
     public Long getId() {
         return id;
@@ -36,11 +39,11 @@ public class Receipt implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-      public Date getDatetime() {
+      public LocalDate getDatetime() {
         return datetime;
     }
 
-    public void setDatetime(Date datetime) {
+    public void setDatetime(LocalDate datetime) {
         this.datetime = datetime;
     }
     public Buyer getBuyer() {

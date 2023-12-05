@@ -35,6 +35,16 @@
                     <td><c:out value='${item.description}'/></td>
                     <td><c:out value='${item.startingBidPrice}'/></td>
                     <td><c:out value='${item.currentPrice}'/></td>
+                    
+                    <td>
+                        <form action="productServlet" method="post">
+                          <input type="hidden" name="action" value="printInvoice">   
+                          <input type="hidden" name="productID" 
+                                 value="<c:out value='${item.ID}'/>">                                        
+                          <input type="submit" value="Print Invoice">
+                        </form>
+                    </td>
+        
                 </tr>
             </c:forEach>
 
