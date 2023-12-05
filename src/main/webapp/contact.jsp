@@ -29,13 +29,13 @@
                     <a class="nav-link" href="index.jsp">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" >Product</a>
+                    <a class="nav-link" href="./productServlet?action=loadProduct" >Product</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Cart</a>
+                    <a class="nav-link" href="./cart?action=loadCart">Cart</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
+                    <a class="nav-link" href="contact.jsp">Contact</a>
                 </li>
             </ul>
 
