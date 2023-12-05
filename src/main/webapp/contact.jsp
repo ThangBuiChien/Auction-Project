@@ -13,6 +13,7 @@
     <script src="https://kit.fontawesome.com/a110f8f65c.js" crossorigin="anonymous"></script>
    <link rel="stylesheet" href="./style/SellerCss.css">
     <link href="./style/main.css" rel="stylesheet" type="text/css">
+     <link rel="stylesheet" href="./style/Noti.css">
 </head>
 <body>
 
@@ -48,9 +49,25 @@
                         </button>
                     </div>
                 </div>
-              <a class="btn btn-success btn-sm ml-3" href="#">
-                <i class="fa-solid fa-bell"></i>
-              </a>
+             <form action="userLogin" method="loadNofi">
+                    <input type="hidden" name="action" value="loadNofi"> 
+                    <div class="btn btn-success btn-sm ml-3" onclick="toggleNotifi()">
+                             <i class="fa-solid fa-bell"></i>
+                    </div>
+                 </form>
+                        <c:forEach var="item" items="${requestScope.nofi}">
+              		<div class="notifi-box" id="box">
+                            <h2>Notifications <span></span>${item.size()}</h2>
+                            <div class="notifi-item">
+                                <div class="text">
+                                   <p>${item.message}</p>
+                                </div> 
+                            </div>
+
+			 </c:forEach>
+			</div>
+
+		</div>
               <a class="btn btn-success btn-sm ml-3"  href="SellerForm.jsp">
                 <i class="fa-solid fa-user">${seller.firstName}</i>
               </a>
@@ -125,6 +142,6 @@
         </div>
     </div>
 </div>
-
+    <script src="js/script.js"></script>
 </body>
 </html>
