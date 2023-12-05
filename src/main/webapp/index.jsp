@@ -18,7 +18,8 @@
     <link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600" rel="stylesheet" type="text/css">
    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <script src="https://kit.fontawesome.com/a110f8f65c.js" crossorigin="anonymous"></script>
-   <link rel="stylesheet" href="./style/SellerCss.css">
+
+   <link rel="stylesheet" href="./style/Noti.css">
     <link href="./style/main.css" rel="stylesheet" type="text/css">
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
@@ -64,6 +65,7 @@
                 </li>
             </ul>
 
+
             <form class="form-inline my-2 my-lg-0">
                 <div class="input-group input-group-sm">
                     <input type="text" class="form-control" placeholder="Search...">
@@ -73,16 +75,39 @@
                         </button>
                     </div>
                 </div>
-              <a class="btn btn-success btn-sm ml-3" href="#">
-                <i class="fa-solid fa-bell"></i>
-              </a>
-              <a class="btn btn-success btn-sm ml-3"  href="SellerForm.jsp">
+                 <a class="btn btn-success btn-sm ml-3"  href="SellerForm.jsp">
                 <i class="fa-solid fa-user">${seller.firstName}</i>
+                
               </a>
               <a class="btn btn-success btn-sm ml-3"  href="./userLogin?action=logOut" >
                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
+             
               </a>
-            </form>
+              </form>
+
+                <form action="userLogin" method="loadNofi">
+                   <input type="hidden" name="action" value="loadNofi"> 
+                   <div class="btn btn-success btn-sm ml-3" onclick="toggleNotifi()">
+                            <i class="fa-solid fa-bell"></i>
+                   </div>
+                   </form>
+               <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+                <div class="notifi-box" id="box">
+                 <c:forEach var="items" items="${requestScope.nofi}">
+                    <h2>Notifications <span></span></h2>
+                    <div class="notifi-item">
+                        <div class="text">
+                           <p>${items.message}</p>
+                        </div> 
+                    </div>
+
+                 </c:forEach>
+                </div>
+
+            </div>
+
+  
+
         </div>
     </div>
 
@@ -375,7 +400,7 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>            
- 
+    <script src="js/script.js"></script>
               
 
 
