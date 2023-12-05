@@ -25,7 +25,7 @@ public class CartServlet extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        String url = "/index.jsp";
+        String url = "/index.html";
 
         // get current action
         String action = request.getParameter("action");
@@ -63,7 +63,7 @@ public class CartServlet extends HttpServlet {
                             
                             session.setAttribute("cart", cart);
                         
-                            url = "/simpleCart.jsp";
+                            url = "/cartfinal.jsp";
                           
                          
                     }
@@ -79,7 +79,7 @@ public class CartServlet extends HttpServlet {
                 cart.removeItem(currentProductID);
                 CartDB.update(cart);
                 session.setAttribute("cart", cart);
-                url = "/simpleCart.jsp";
+                url = "/cartfinal.jsp";
             }
         }
         
@@ -88,10 +88,14 @@ public class CartServlet extends HttpServlet {
             Cart currentCart = CartDB.selectCart(currentUser);
             request.setAttribute("cart", currentCart);
             
-            url = "/simpleCart.jsp";
+            url = "/cartfinal.jsp";
             
         }
-        
+        else if (action.equals ("shop")){
+            
+            url = "/finalproduct.jsp";
+            
+        }
         getServletContext().getRequestDispatcher(url).forward(request, response);
     }
 
