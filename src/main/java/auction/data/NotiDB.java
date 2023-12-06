@@ -38,12 +38,12 @@ public class NotiDB {
     
     public static List<Notification> selectNotifications(Buyer currentUser) {
         
-
+        try{
             
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         
         String qString = "SELECT u from Notification u "
-            + "WHERE u.user = :currentUser"
+            + "WHERE u.user = :currentUser "
                 + "ORDER BY u.idNoti DESC";
         
         System.out.println("this is the query " + qString);
@@ -63,6 +63,12 @@ public class NotiDB {
             em.close();
         }
         return notifications;
+        }
+        catch (Exception e) {
+            // Handle the exception appropriately, e.g., log it or throw a custom exception
+            e.printStackTrace(); // This prints the exception's stack trace, replace with proper logging
+            return null; // Or throw a custom exception based on your application logic
+        }
     }
     
     public static List<Notification> selectNotification() {
