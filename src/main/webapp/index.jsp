@@ -85,12 +85,15 @@
               </a>
               </form>
 
-                <form action="userLogin" method="loadNofi">
+                <form action="userLogin" method="POST">
                    <input type="hidden" name="action" value="loadNofi"> 
                    <div class="btn btn-success btn-sm ml-3" onclick="toggleNotifi()">
                             <i class="fa-solid fa-bell"></i>
+                            <button>Click</button>
                    </div>
-                   </form>
+                </form>
+                
+                <button href = "userLogin?action=loadNofi"  ></button>
                <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                 <div class="notifi-box" id="box">
                  <c:forEach var="items" items="${requestScope.nofi}">
@@ -103,6 +106,8 @@
 
                  </c:forEach>
                 </div>
+                
+                
 
             </div>
 

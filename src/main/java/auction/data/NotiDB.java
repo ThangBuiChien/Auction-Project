@@ -43,7 +43,8 @@ public class NotiDB {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         
         String qString = "SELECT u from Notification u "
-            + "WHERE u.user = :currentUser";
+            + "WHERE u.user = :currentUser"
+                + "ORDER BY u.idNoti DESC";
         
         System.out.println("this is the query " + qString);
         System.out.println("is user send; userID =  " + currentUser);
