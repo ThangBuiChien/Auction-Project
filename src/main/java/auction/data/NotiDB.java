@@ -52,6 +52,8 @@ public class NotiDB {
         TypedQuery<Notification> q = em.createQuery(qString, Notification.class);
         
         q.setParameter("currentUser", currentUser);
+        
+        q.setMaxResults(3);
 
 
         List<Notification> notifications;
